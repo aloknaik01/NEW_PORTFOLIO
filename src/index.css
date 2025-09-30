@@ -1,68 +1,266 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@600&display=swap');
+    
+    :root {
+          /* ========== COLOR VARIABLES ========== */
+          --color-bg-primary: #000000;
+          --color-bg-secondary: #1a1a1a;
+          --color-text-primary: #ffffff;
+          --color-text-secondary: rgba(255, 255, 255, 0.7);
+          --color-text-tertiary: rgba(255, 255, 255, 0.5);
+          
+          /* Accent Colors */
+          --color-accent-yellow: #d4ff00;
+          --color-accent-yellow-hover: #e5ff33;
+          --color-accent-green: #4ade80;
+          --color-accent-green-hover: #6ee7a0;
+          --color-accent-purple: #c760ff;
+          --color-accent-purple-hover: #d580ff;
+          
+          /* Glass Effect Colors */
+          --color-glass-bg: rgba(20, 20, 20, 0.8);
+          --color-glass-border: rgba(255, 255, 255, 0.1);
+          --color-glass-border-light: rgba(255, 255, 255, 0.08);
+          --color-glass-overlay: rgba(30, 30, 30, 0.6);
+          --color-nav-active-bg: rgba(255, 255, 255, 0.15);
+          --color-nav-hover-bg: rgba(255, 255, 255, 0.08);
+          
+          /* Card Colors */
+          --color-card-purple-start: rgba(229, 128, 255, 0.95);
+          --color-card-purple-end: rgba(199, 96, 255, 0.95);
+          --color-card-dark-bg: rgba(30, 30, 30, 0.6);
+          
+          /* Badge Colors */
+          --color-badge-bg: rgba(255, 255, 255, 0.06);
+          --color-badge-border: rgba(255, 255, 255, 0.1);
+          --color-badge-label-bg: rgba(255, 255, 255, 0.25);
+          --color-badge-label-border: rgba(255, 255, 255, 0.3);
+          
+          /* Icon & Avatar Colors */
+          --color-icon-bg: rgba(255, 255, 255, 0.95);
+          --color-avatar-border: rgba(255, 255, 255, 0.4);
+          
+          /* Button Colors */
+          --color-btn-icon-border: rgba(255, 255, 255, 0.15);
+          --color-btn-icon-hover-bg: rgba(255, 255, 255, 0.1);
+          --color-btn-icon-hover-border: rgba(255, 255, 255, 0.3);
+          
+          /* Bullet Colors */
+          --color-bullet-default: rgba(255, 255, 255, 0.3);
+          
+          /* ========== SPACING VARIABLES ========== */
+          --spacing-xs: 6px;
+          --spacing-sm: 10px;
+          --spacing-md: 12px;
+          --spacing-lg: 16px;
+          --spacing-xl: 20px;
+          --spacing-2xl: 24px;
+          --spacing-3xl: 28px;
+          --spacing-4xl: 32px;
+          --spacing-5xl: 40px;
+          --spacing-6xl: 48px;
+          --spacing-7xl: 60px;
+          
+          /* Component Specific Spacing */
+          --spacing-navbar-gap: 32px;
+          --spacing-feature-gap: 18px;
+          --spacing-avatar-gap: 16px;
+          --spacing-grid-gap: 24px;
+          
+          /* ========== PADDING VARIABLES ========== */
+          --padding-navbar: 12px 24px;
+          --padding-badge: 8px 16px;
+          --padding-badge-label: 6px 14px;
+          --padding-card: 28px;
+          --padding-illustration: 40px;
+          --padding-hero: 120px 40px 60px;
+          --padding-btn-launch: 10px 20px;
+          --padding-icon-btn: 0;
+          
+          /* ========== MARGIN VARIABLES ========== */
+          --margin-badges-bottom: 32px;
+          --margin-title-bottom: 60px;
+          --margin-header-bottom: 24px;
+          --margin-list-bottom: 32px;
+          --margin-avatars-top: 28px;
+          --margin-features-top: 20px;
+          --margin-grid-top: 48px;
+          
+          /* ========== BORDER VARIABLES ========== */
+          --border-width-default: 1px;
+          --border-width-avatar: 3px;
+          
+          --border-style-default: solid;
+          
+          --border-color-glass: rgba(255, 255, 255, 0.1);
+          --border-color-glass-light: rgba(255, 255, 255, 0.08);
+          --border-color-badge: rgba(255, 255, 255, 0.1);
+          --border-color-card-purple: rgba(255, 255, 255, 0.2);
+          --border-color-btn-icon: rgba(255, 255, 255, 0.15);
+          
+          /* ========== BORDER RADIUS VARIABLES ========== */
+          --radius-xs: 8px;
+          --radius-sm: 16px;
+          --radius-md: 20px;
+          --radius-lg: 24px;
+          --radius-xl: 50px;
+          --radius-full: 50%;
+          
+          /* Component Specific Radius */
+          --radius-navbar: 50px;
+          --radius-badge: 20px;
+          --radius-card: 24px;
+          --radius-button: 24px;
+          --radius-icon-btn: 8px;
+          
+          /* ========== FONT SIZE VARIABLES ========== */
+          --font-size-xs: 10px;
+          --font-size-sm: 11px;
+          --font-size-base: 13px;
+          --font-size-md: 14px;
+          --font-size-lg: 16px;
+          --font-size-xl: 20px;
+          --font-size-2xl: 28px;
+          --font-size-3xl: 32px;
+          --font-size-4xl: 36px;
+          --font-size-5xl: 40px;
+          --font-size-6xl: 56px;
+          
+          /* Component Specific Font Sizes */
+          --font-size-logo: 18px;
+          --font-size-nav-link: 13px;
+          --font-size-badge: 11px;
+          --font-size-title: 56px;
+          --font-size-feature: 14px;
+          --font-size-icon: 20px;
+          --font-size-avatar-icon: 28px;
+          --font-size-doodle: 28px;
+          --font-size-bullet: 12px;
+          
+          /* ========== FONT WEIGHT VARIABLES ========== */
+          --font-weight-normal: 400;
+          --font-weight-medium: 500;
+          --font-weight-semibold: 600;
+          --font-weight-bold: 700;
+          
+          /* ========== LINE HEIGHT VARIABLES ========== */
+          --line-height-tight: 1.15;
+          --line-height-normal: 1.5;
+          --line-height-relaxed: 1.6;
+          
+          /* ========== LETTER SPACING VARIABLES ========== */
+          --letter-spacing-tight: -1px;
+          --letter-spacing-normal: 0.3px;
+          --letter-spacing-wide: 0.8px;
+          
+          /* ========== BOX SHADOW VARIABLES ========== */
+          --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+          --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+          --shadow-lg: 0 8px 20px rgba(212, 255, 0, 0.3);
+          --shadow-xl: 0 20px 60px rgba(229, 128, 255, 0.3);
+          
+          /* ========== BACKDROP FILTER VARIABLES ========== */
+          --backdrop-blur-sm: blur(10px);
+          --backdrop-blur-md: blur(20px);
+          --backdrop-blur-lg: blur(30px);
+          
+          /* ========== TRANSITION VARIABLES ========== */
+          --transition-fast: all 0.2s;
+          --transition-normal: all 0.3s;
+          --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          
+          /* ========== Z-INDEX VARIABLES ========== */
+          --z-index-navbar: 100;
+          
+          /* ========== CONTAINER & BREAKPOINT VARIABLES ========== */
+          --container-max-width-sm: 640px;
+          --container-max-width-md: 768px;
+          --container-max-width-lg: 1024px;
+          --container-max-width-xl: 1280px;
+          --container-max-width-2xl: 1536px;
+          
+          --container-padding-x: 20px;
+          --container-padding-x-md: 40px;
+          --container-padding-x-lg: 60px;
+          
+          /* Breakpoints */
+          --breakpoint-sm: 640px;
+          --breakpoint-md: 768px;
+          --breakpoint-lg: 1024px;
+          --breakpoint-xl: 1280px;
+          --breakpoint-2xl: 1536px;
+          
+          /* ========== SIZE VARIABLES ========== */
+          --size-icon-btn: 36px;
+          --size-icon-wrapper: 38px;
+          --size-avatar: 70px;
+          --size-doodle-coin: 50px;
+          --size-doodle-line: 180px;
+          
+          --height-illustration: 240px;
+          
+          /* ========== OPACITY VARIABLES ========== */
+          --opacity-doodle: 0.5;
+          --opacity-subtitle: 0.8;
+          --opacity-hover: 0.7;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+        
+        }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+         
+         * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+        body {
+          background: var(--color-bg-primary);
+        }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+        .headline {
+      font-family: 'Caveat', cursive;
+    }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+          /* Container Utility Class */
+        .container {
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          padding-left: var(--container-padding-x);
+          padding-right: var(--container-padding-x);
+        }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+        @media (min-width: 640px) {
+          .container {
+            max-width: var(--container-max-width-sm);
+          }
+        }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+        @media (min-width: 768px) {
+          .container {
+            max-width: var(--container-max-width-md);
+            padding-left: var(--container-padding-x-md);
+            padding-right: var(--container-padding-x-md);
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .container {
+            max-width: var(--container-max-width-lg);
+            padding-left: var(--container-padding-x-lg);
+            padding-right: var(--container-padding-x-lg);
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .container {
+            max-width: var(--container-max-width-xl);
+          }
+        }
+
+        @media (min-width: 1536px) {
+          .container {
+            max-width: var(--container-max-width-2xl);
+          }
+        }
