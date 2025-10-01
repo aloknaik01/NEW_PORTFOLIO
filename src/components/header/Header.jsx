@@ -18,14 +18,17 @@ export default function Header ()
       <nav className="navbar">
         <div className="navbar-container">
           <div className="logo headline">ALOK.DEV</div>
+
+         {/* middle treanparent links  */}
           <div className="nav-links ">
             <div 
               className="nav-link-bg"
               style={{
                 left: `${activeLink * 25}%`,
                 width: '25%',
-                height: '100%',
-                top: 0
+                height: '80%',
+                padding: '5px',
+                top: 5
               }}
             />
             {navItems.map((item, index) => (
@@ -43,6 +46,8 @@ export default function Header ()
               </a>
             ))}
           </div>
+
+          {/* Social Links */}
           <div className="nav-actions">
             <button className="icon-btn"><FaGithub  size={23}/></button>
             <button className="icon-btn"><FaLinkedinIn size={25} /></button>

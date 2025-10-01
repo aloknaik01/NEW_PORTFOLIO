@@ -1,0 +1,63 @@
+/* TellStory.module.css */
+
+.card {
+  background: var(--color-glass-bg);
+  border-radius: var(--radius-card);
+  border: var(--border-width-default) var(--border-style-default) var(--color-glass-border);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  border-radius: var(--radius-card);
+  display: block;
+  object-fit: cover;
+}
+
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--color-glass-overlay);
+  border-radius: 0 var(--radius-card) var(--radius-card) var(--radius-card);
+  padding: var(--spacing-md) var(--spacing-xl);
+  color: var(--color-text-primary);
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--font-size-lg);
+}
+
+.rightSection {
+  margin-left: var(--spacing-6xl);
+  color: var(--color-text-primary);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--margin-title-bottom);
+}
+
+.subTitle {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.badge {
+  background: var(--color-badge-bg);
+  border-radius: var(--radius-badge);
+  padding: var(--padding-badge);
+  font-size: var(--font-size-badge);
+  border: var(--border-width-default) var(--border-style-default) var(--color-badge-border);
+  color: var(--color-text-primary);
+}
