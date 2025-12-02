@@ -1,27 +1,26 @@
 import { useState } from 'react';
 import './Header.css'
-import { FaGithub , FaLinkedinIn } from 'react-icons/fa';
-export default function Header ()
-{
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+export default function Header() {
 
-     const [activeLink, setActiveLink] = useState(0);
-  
+  const [activeLink, setActiveLink] = useState(0);
+
   const navItems = [
     { name: 'Home', icon: '✦' },
     { name: 'Work Shop', icon: null },
     { name: "Who It's For", icon: null },
     { name: 'Join Now', icon: null }
   ];
-    return (
-        <header>
-             {/* Glass Navbar */}
+  return (
+    <header>
+      {/* Glass Navbar */}
       <nav className="navbar">
         <div className="navbar-container">
           <div className="logo headline">ALOK.DEV</div>
 
-         {/* middle treanparent links  */}
+          {/* middle treanparent links  */}
           <div className="nav-links ">
-            <div 
+            <div
               className="nav-link-bg"
               style={{
                 left: `${activeLink * 25}%`,
@@ -49,12 +48,20 @@ export default function Header ()
 
           {/* Social Links */}
           <div className="nav-actions">
-            <button className="icon-btn"><FaGithub  size={23}/></button>
+            <button className="icon-btn"><FaGithub size={23} /></button>
             <button className="icon-btn"><FaLinkedinIn size={25} /></button>
             <button className="launch-btn ">Download Resume</button>
           </div>
+
+          {/* <div className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+            <div className={`spark-icon ${menuOpen ? "open" : ""}`}>
+              ✦
+            </div>
+          </div> */}
+
         </div>
       </nav>
-        </header>
-    )
+    </header>
+  )
 }
+

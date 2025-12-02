@@ -145,3 +145,29 @@
      .launch-btn:active {
        transform: translateY(-1px);
      }
+
+/* Tablet & Mobile: hide center nav links */
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none !important;
+  }
+
+  .navbar-container {
+    grid-template-columns: 1fr auto; /* logo | actions */
+  }
+}
+
+/* Mobile further spacing adjustment */
+@media (max-width: 640px) {
+  .nav-actions {
+    gap: 10px;
+  }
+
+  .launch-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+
+

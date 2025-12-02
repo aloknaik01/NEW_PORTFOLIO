@@ -1,9 +1,8 @@
 import './Hero.css'
-export default function Hero()
-{
-    return (
-        <section className=".hero-container">
-<div className="hero-content">
+export default function Hero() {
+  return (
+    <section className="hero-container">
+      <div className="hero-content">
         <div className="hero-inner">
           <div className="badges">
             <span className="badge">Notion</span>
@@ -22,7 +21,7 @@ export default function Hero()
               <div className="card-header">
                 <span className="card-label">Creators</span>
               </div>
-              
+
               <div className="feature-list">
                 <div className="feature-item">
                   <div className="icon-wrapper">
@@ -119,6 +118,6 @@ export default function Hero()
           </div>
         </div>
       </div>
-        </section>
-    )
+    </section>
+  )
 }
