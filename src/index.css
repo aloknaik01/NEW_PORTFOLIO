@@ -1,5 +1,8 @@
+
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Montserrat:wght@600&display=swap');
-    
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
     :root {
           /* ========== COLOR VARIABLES ========== */
           --color-bg-primary: #000000;
@@ -220,8 +223,17 @@
 
         .headline {
       font-family: 'Caveat', cursive;
-    }
+          }
 
+      .calligraphy-headline {
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-size: 3.7rem;
+      line-height: 1;
+      font-style: italic;
+      text-align: center;
+      /* color: #1a1a1a; */
+    }
           /* Container Utility Class */
         .container {
           width: 100%;
@@ -264,3 +276,7 @@
             max-width: var(--container-max-width-2xl);
           }
         }
+
+
+
+       
