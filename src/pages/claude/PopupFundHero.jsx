@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Footer } from '../../components/Footer/Footer';
 import Header from '../../components/header/Header';
 import Hero from '../hero/Hero';
 
@@ -8,6 +8,7 @@ export default function PopupFundHero() {
     <div className="hero-container">
      <Header />
       <Hero/>
+      <Footer/>
     </div>
   );
 }
