@@ -1,0 +1,72 @@
+.terminal-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* Main line */
+.terminal-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  animation: lineIn 0.6s ease both;
+  white-space: nowrap;
+}
+
+/* Prompt */
+.prompt {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+/* Cursor */
+.cursor {
+  width: 2px;
+  height: 14px;
+  background: currentColor;
+  margin-left: 2px;
+  animation: blink 1s steps(2) infinite;
+}
+
+/* Animation */
+@keyframes lineIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------------- THEMES ---------------- */
+
+/* Git */
+.git {
+  color: #f97316;
+}
+
+/* Maven */
+.maven {
+  color: #22d3ee;
+}
+
+/* Java Optional */
+.java {
+  color: #fbbf24;
+}
+
+/* Stream API */
+.stream {
+  color: #a78bfa;
+}
