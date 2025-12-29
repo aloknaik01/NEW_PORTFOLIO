@@ -19,7 +19,7 @@ export default function Header() {
           <div className="logo headline">ALOK.DEV</div>
 
           <div className="nav-links">
-            <div 
+            <div
               className="nav-link-bg"
               data-active-index={activeLink}
             />
@@ -46,7 +46,7 @@ export default function Header() {
             <button className="icon-btn">
               <FaLinkedinIn size={25} />
             </button>
-            <button className="launch-btn">Download Resume</button>
+            <button className="launch-btn">Sync Resume</button>
           </div>
         </div>
       </nav>
