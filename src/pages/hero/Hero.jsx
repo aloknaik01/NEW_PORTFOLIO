@@ -26,7 +26,7 @@ export default function Hero() {
 
           {/* Sroll Indicator */}
 
-          <div className="mt-28 flex flex-col items-center justify-center space-y-4 opacity-40 hover:opacity-100 transition-opacity">
+          <div className="mt-20 flex flex-col items-center justify-center space-y-4 opacity-40 hover:opacity-100 transition-opacity">
             <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">
               Scroll to explore
             </span>
