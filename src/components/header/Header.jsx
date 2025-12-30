@@ -7,9 +7,9 @@ export default function Header() {
 
   const navItems = [
     { name: 'Home', icon: '✦' },
+    { name: "Who Am I", icon: null },
     { name: 'Work Shop', icon: null },
-    { name: "Who It's For", icon: null },
-    { name: 'Join Now', icon: null }
+    { name: 'Chat Now', icon: null }
   ];
 
   return (
