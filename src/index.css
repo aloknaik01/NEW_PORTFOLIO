@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
     :root {
           /* ========== COLOR VARIABLES ========== */
           --color-bg-primary: #000000;
@@ -220,6 +221,75 @@
         body {
           background: var(--color-bg-primary);
         }
+
+       /* Custom Cyberpunk Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #000000; /* Pure Black Background */
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #1a1a1a;
+        border: 2px solid #000000;
+        border-radius: 100px;
+        transition: all 0.3s ease;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #D9FF00;
+        box-shadow: 0 0 15px #D9FF00;
+      }
+
+      /* Scrollbar corner where vertical and horizontal meet */
+      ::-webkit-scrollbar-corner {
+        background: #000000; /* Pure Black Corner */
+      }
+
+      /* Firefox support */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #333 #000000; /* thumb track */
+      }
+      
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .bento-card:hover {
+        border-color: #D9FF00; /* Matches neon-lime */
+        box-shadow: 0 0 30px rgba(217, 255, 0, 0.15);
+      }
+
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+      .scanline::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent, rgba(217, 255, 0, 0.02), transparent);
+        animation: scanline 8s linear infinite;
+        pointer-events: none;
+      }
+
+      .glow-text {
+        text-shadow: 0 0 20px rgba(217, 255, 0, 0.5);
+      }
+
+      /* Smooth internal scrolling for the whole page */
+      html {
+        scroll-behavior: smooth;
+      }
+
+        /* Scroll Bar */
 
         .headline {
       font-family: 'Caveat', cursive;
