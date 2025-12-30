@@ -1,7 +1,10 @@
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import PopupFundHero from './pages/claude/PopupFundHero.jsx'
+import App from './App'
 
 createRoot(document.getElementById('root')).render(
-    <PopupFundHero />
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 )
