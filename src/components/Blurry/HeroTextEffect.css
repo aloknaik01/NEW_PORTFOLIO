@@ -4,6 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: fit-content;
   overflow: hidden;
 }

@@ -36,7 +36,7 @@ export default function BlurEntryHero() {
         {visible && (
           <motion.div
             key={roleIndex}
-            style={{ display: "flex", fontFamily: "'Caveat', cursive", fontSize: "3rem", color: "#fff" }}
+            style={{ display: "flex", fontFamily: "'Caveat', cursive", fontSize: "4rem", color: "#fff" }}
           >
             {letters.map((letter, index) => (
               <motion.span
