@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import './HeroTextEffect.css';
 
-const roles = ["React Developer", "Java Enthusiast", "Full-Stack Engineer"];
+const roles = ["React Maestro", "Java Enthusiast", "FullStack Alchemist"];
 
 export default function BlurEntryHero() {
   const [roleIndex, setRoleIndex] = useState(0);
