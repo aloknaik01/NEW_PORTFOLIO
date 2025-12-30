@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import PopupFundHero from "./pages/claude/PopupFundHero";
+import PopupFundHero from "./pages/Mainpage/PopupFundHero";
 import About from "./components/About/About";
 import Workshop from "./components/Workshop/Workshop";
 import GithubActivity from "./components/GithubActivity/GithubActivity";
 import { SkillsMatrix } from "./components/SkillsMatrix/SkillsMatrix";
 import Header from "./components/header/Header";
 import { Footer } from "./components/Footer/Footer";
-import NotFound from "./pages/hero/notfound/NotFound";
+import NotFound from "./pages/notfound/NotFound";
 
 function App() {
   return (
