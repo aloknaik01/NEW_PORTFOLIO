@@ -1,14 +1,26 @@
-import { Command, Github, Linkedin, Twitter, Globe, Activity, ShieldCheck } from 'lucide-react';
-
-
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Github, Linkedin, Twitter, Globe, Activity, ShieldCheck } from 'lucide-react';
 
 export const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-     const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id) => {
+    // If we're on home page, scroll to section
+    if (location.pathname === '/') {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to home page first, then scroll
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
-   return (
+
+  return (
     <footer className="bg-black/60 border-t border-white/5 pt-16 pb-8 px-6 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-neon-lime/5 blur-[100px] rounded-full pointer-events-none"></div>
@@ -18,8 +30,13 @@ export const Footer = () => {
           
           {/* Brand Identity */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-xl font-black tracking-tighter group cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-              
+            <div 
+              className="flex items-center gap-2 text-xl font-black tracking-tighter group cursor-pointer" 
+              onClick={() => {
+                navigate('/');
+                window.scrollTo({top: 0, behavior: 'smooth'});
+              }}
+            >
               <span className="italic uppercase">ALOK.DEV</span>
             </div>
             <p className="text-xs text-gray-500 font-mono leading-relaxed max-w-[240px]">
@@ -50,14 +67,16 @@ export const Footer = () => {
             <h4 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.3em] mb-6">Social_Uplinks</h4>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: <Github size={18} />, label: 'GitHub' },
-                { icon: <Linkedin size={18} />, label: 'LinkedIn' },
-                { icon: <Twitter size={18} />, label: 'Twitter' },
-                { icon: <Globe size={18} />, label: 'Dev.to' }
+                { icon: <Github size={18} />, label: 'GitHub', url: 'https://github.com/yourusername' },
+                { icon: <Linkedin size={18} />, label: 'LinkedIn', url: 'https://linkedin.com/in/yourusername' },
+                { icon: <Twitter size={18} />, label: 'Twitter', url: 'https://twitter.com/yourusername' },
+                { icon: <Globe size={18} />, label: 'Dev.to', url: 'https://dev.to/yourusername' }
               ].map((social, idx) => (
                 <a 
                   key={idx} 
-                  href="#" 
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-white/5 border border-white/5 text-gray-500 hover:text-neon-lime hover:border-neon-lime/30 transition-all"
                   title={social.label}
                 >

@@ -10,9 +10,12 @@
   align-items: center;
   padding: var(--spacing-xl) 0;
   background: var(--color-bg-primary);  
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);  */
   z-index: var(--z-index-navbar);
-  transition: all 0.3s ease;        
+  transition: all 0.3s ease;    
+  height: 75px;
+ background: transparent; 
+
 }
 
 .navbar-container {
