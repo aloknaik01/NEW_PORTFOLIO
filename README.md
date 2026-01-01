@@ -1,16 +1,80 @@
-# React + Vite
+# ALOK.DEV — Engineering Portfolio 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, cyber-inspired personal portfolio showcasing my **engineering philosophy**, **projects**, and **system-level thinking**.  
+Built with modern frontend tooling, strong UI motion, and production-grade structure.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Tech Stack
 
-## React Compiler
+### Frontend
+- **React (JSX)** — Component-driven architecture
+- **Tailwind CSS** — Utility-first styling with glassmorphism
+- **Framer Motion** — Layout & micro-interactions
+- **Lucide Icons** — Clean, modern iconography
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend (Planned / In Progress)
+- **Spring Boot**
+- **PostgreSQL**
+- **JWT / OAuth2**
+- **REST APIs**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Features Implemented
+
+###  Navigation System
+- Animated **pill-style navbar**
+- Active section indicator
+- Resume sync dropdown (Preview / Download)
+- GitHub & LinkedIn quick access
+- Scroll-aware navbar styling
+
+---
+
+###  Workshop (Projects Section)
+- Bento-style grid layout
+- Category-based filtering:
+  - `ALL_SYSTEMS`
+  - `UI_MODULES`
+  - `CORE_ENGINE`
+  - `END_TO_END`
+- Animated transitions (Framer Motion)
+- Tech stack badges per project
+- Scalable card architecture
+
+---
+
+### Engineering Philosophy Section
+- Clean, minimal typography
+- Reduced & balanced text sizing
+- Hover-based emphasis
+- Philosophy tags:
+  - Type-Safe
+  - Scalable
+  - Performant
+  - Design-Driven
+
+---
+
+###  Custom 404 / Not Found Page
+- Cyberpunk terminal-style diagnostics
+- Animated error logs
+- Glitch-style 404 typography
+- System status indicator
+- “Recalibrate Uplink” action
+- Fully animated with Framer Motion
+
+---
+
+###  UI / UX Highlights
+- Glassmorphism design language
+- Subtle neon accent colors
+- Smooth hover & layout animations
+- Responsive across screen sizes
+- Dark, performance-focused aesthetic
+
+---
+
+## 📁 Project Structure (Current)
+
