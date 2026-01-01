@@ -76,5 +76,31 @@ Built with modern frontend tooling, strong UI motion, and production-grade struc
 
 ---
 
-## 📁 Project Structure (Current)
+##  Architecture Decisions
+
+- Component-first UI architecture (no monolithic pages)
+- Stateless UI where possible, state lifted intentionally
+- Animation logic separated from business logic
+- Zero UI libraries – fully custom design system
+- Scalable data structures for future admin control
+- 
+##  Component Design Principles
+
+Each component follows:
+- Single responsibility
+- Predictable inputs & outputs
+- No hidden side effects
+- Reusable layout + animation patterns
+- Explicit visual hierarchy
+
+> Every component should be replaceable without breaking the system.
+> ##  Performance Strategy
+
+- Minimal re-renders using controlled state
+- Layout animations instead of heavy transforms
+- Tailwind JIT for optimized CSS output
+- No unnecessary global state
+- Lazy-ready architecture for future code splitting
+
+
 
