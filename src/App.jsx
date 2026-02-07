@@ -7,6 +7,7 @@ import { SkillsMatrix } from "./components/SkillsMatrix/SkillsMatrix";
 import Header from "./components/header/Header";
 import { Footer } from "./components/Footer/Footer";
 import NotFound from "./pages/notfound/NotFound";
+import { Contact } from "lucide-react";
 
 function App() {
   return (
@@ -47,6 +48,14 @@ function App() {
           element={
             <div className="min-h-screen pt-20">
               <SkillsMatrix />
+            </div>
+          }
+        />
+        <Route
+          path="/findme"
+          element={
+            <div className="min-h-screen pt-20">
+              <Contact />
             </div>
           }
         />

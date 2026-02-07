@@ -11,24 +11,44 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Update active link based on scroll position or route
-  useEffect(() => {
-    if (location.pathname !== '/') {
-      // If not on home page, don't track scroll
-      return;
-    }
+  const navItems = [
+  { name: 'Home', icon: '✦', sectionId: null, path: '/' },
+  { name: "Who Am I", icon: null, sectionId: 'about', path: '/about' },
+  { name: 'Work Shop', icon: null, sectionId: 'workshop', path: '/workshop' },
+  { name: 'Chat Now', icon: null, sectionId: 'contact', path: '/findme' } // contact section home page pe hai
+];
 
+useEffect(() => {
+  const currentPath = location.pathname;
+  
+  if (currentPath === '/about') {
+    setActiveLink(1); 
+    return;
+  }
+  if (currentPath === '/workshop') {
+    setActiveLink(2); 
+    return;
+  }
+  if (currentPath === '/activity') {
+    setActiveLink(0); 
+    return;
+  }
+  if (currentPath === '/skills') {
+    setActiveLink(0); 
+    return;
+  }
+  
+
+  if (currentPath === '/') {
     const handleScroll = () => {
       const sections = ['workshop', 'about', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
-      // Check if at top of page
       if (window.scrollY < 300) {
         setActiveLink(0);
         return;
       }
 
-      // Check each section
       for (let i = 0; i < sections.length; i++) {
         const element = document.getElementById(sections[i]);
         if (element) {
@@ -42,10 +62,11 @@ export default function Header() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial position
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location]);
+  }
+}, [location]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -79,12 +100,8 @@ export default function Header() {
     }, location.pathname !== '/' ? 100 : 0);
   };
 
-  const navItems = [
-    { name: 'Home', icon: '✦', sectionId: null },
-    { name: "Who Am I", icon: null, sectionId: 'about' },
-    { name: 'Work Shop', icon: null, sectionId: 'workshop' },
-    { name: 'Chat Now', icon: null, sectionId: 'contact' }
-  ];
+
+
 
   return (
     <header>
@@ -104,9 +121,9 @@ export default function Header() {
               data-active-index={activeLink}
             />
             {navItems.map((item, index) => (
-              <a
+              <Link
                 key={index}
-                href="#"
+                to={`/${item.name}`}
                 className={`nav-link ${activeLink === index ? 'active' : ''}`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -115,7 +132,7 @@ export default function Header() {
               >
                 {item.icon && <span className="nav-link-icon">{item.icon}</span>}
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 

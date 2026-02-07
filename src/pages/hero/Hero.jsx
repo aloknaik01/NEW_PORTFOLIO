@@ -1,5 +1,6 @@
 import About from "../../components/About/About";
 import BlurEntryHero from "../../components/Blurry/BlurEntryHero";
+import Contact from "../../components/findme/Contact";
 import GithubActivity from "../../components/GithubActivity/GithubActivity";
 import { SkillsMatrix } from "../../components/SkillsMatrix/SkillsMatrix";
 import TerminalLine from "../../components/TerminalLine/TerminalLine";
@@ -47,6 +48,7 @@ export default function Hero() {
           <GithubActivity />
           <SkillsMatrix />
           <Workshop />
+          <Contact/>
         </div>
       </div>
     </section>
