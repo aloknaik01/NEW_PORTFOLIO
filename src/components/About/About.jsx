@@ -1,7 +1,8 @@
-import React from 'react';
-import { MapPin, Briefcase, Fingerprint } from 'lucide-react';
-import { motion } from 'framer-motion';
-// import me from"./me.jpeg"
+import React from "react";
+import { MapPin, Briefcase, Fingerprint } from "lucide-react";
+import { motion } from "framer-motion";
+import img from "/boy.webp";
+
 const About = () => {
   return (
     <section id="about" className="py-24 px-5 relative overflow-hidden">
@@ -18,10 +19,7 @@ const About = () => {
           </h3>
         </div>
 
-        {/* ⬇️ ONLY CHANGE: right column reduced */}
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 items-start">
-          
-          {/* LEFT COLUMN (UNCHANGED) */}
           <div className="space-y-6">
             <div className="glass p-8 rounded-[2rem] border-white/5 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-neon-lime"></div>
@@ -32,17 +30,23 @@ const About = () => {
 
               <div className="space-y-5 text-gray-400 font-light leading-relaxed text-base">
                 <p>
-                  I don't just write code; I{' '}
+                  I don't just write code; I{" "}
                   <span className="text-white font-medium italic underline decoration-neon-lime decoration-2 underline-offset-4">
                     engineer solutions
-                  </span>{' '}
-                  that bridge the gap between complex backend logic and intuitive user experiences.
+                  </span>{" "}
+                  that bridge the gap between complex backend logic and
+                  intuitive user experiences.
                 </p>
 
                 <p>
-                  With a foundation in <span className="text-white font-bold">Java systems</span> and a passion for the{' '}
-                  <span className="text-neon-lime font-bold">React ecosystem</span>, my focus is on building high-availability
-                  architectures that remain fluid and performant under heavy load.
+                  With a foundation in{" "}
+                  <span className="text-white font-bold">Java systems</span> and
+                  a passion for the{" "}
+                  <span className="text-neon-lime font-bold">
+                    React ecosystem
+                  </span>
+                  , my focus is on building high-availability architectures that
+                  remain fluid and performant under heavy load.
                 </p>
 
                 <p className="font-handwriting text-2xl text-white/80 transform -rotate-2 mt-6">
@@ -78,7 +82,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (SCALED DOWN ONLY) */}
           <div className="relative group scale-[0.95] origin-top">
             <div className="absolute -inset-3 border border-neon-lime/20 rounded-[2rem] group-hover:border-neon-lime/50 transition-colors duration-700"></div>
 
@@ -87,16 +90,15 @@ const About = () => {
 
             <div className="relative aspect-[4/5]  rounded-[1.75rem] overflow-hidden">
               <img
-                src='./me.jpeg'
+                src={img}
                 alt="Alok Naik"
                 className="w-full h-full object-cover scale-[0.96] grayscale group-hover:grayscale-0 transition-all duration-700"
               />
 
-              {/* Scanline */}
               <div className="absolute inset-0 pointer-events-none">
                 <motion.div
-                  animate={{ top: ['0%', '100%', '0%'] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+                  animate={{ top: ["0%", "100%", "0%"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                   className="absolute left-0 w-full h-[1px] bg-neon-lime shadow-[0_0_6px_#D9FF00] opacity-40"
                 />
               </div>
@@ -124,7 +126,6 @@ const About = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

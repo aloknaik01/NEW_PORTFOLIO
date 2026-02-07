@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { ChevronDown, Download, Eye } from 'lucide-react';
@@ -120,11 +120,11 @@ export default function Header() {
           </div>
 
           <div className="nav-actions">
-            <button className="icon-btn">
+            <Link target='_blank' to="https://github.com/aloknaik01" className="icon-btn">
               <FaGithub size={23} />
-            </button>
+            </Link>
             <button className="icon-btn">
-              <FaLinkedinIn size={25} />
+              <FaLinkedinIn target='_blank'  to="https://www.linkedin.com/in/alok-kumar-naik-a18b4b365/" size={25} />
             </button>
             
             {/* Sync Resume with Click Menu */}
