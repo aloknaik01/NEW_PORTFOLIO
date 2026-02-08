@@ -25,8 +25,7 @@ export default function Hero() {
             <BlurEntryHero />
           </div>
 
-          {/* Sroll Indicator */}
-
+          {/* Scroll Indicator */}
           <div className="mt-40 flex flex-col items-center justify-center space-y-4 opacity-40 hover:opacity-100 transition-opacity">
             <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">
               Scroll to explore
@@ -42,8 +41,7 @@ export default function Hero() {
         }
       `}</style>
 
-          {/* Sroll Indicator */}
-
+          {/* All sections below the hero */}
           <About />
           <GithubActivity />
           <SkillsMatrix />

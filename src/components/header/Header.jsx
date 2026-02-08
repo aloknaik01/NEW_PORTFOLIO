@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { ChevronDown, Download, Eye } from 'lucide-react';
@@ -8,65 +8,14 @@ export default function Header() {
   const [activeLink, setActiveLink] = useState(0);
   const [showResumeMenu, setShowResumeMenu] = useState(false);
   const menuRef = useRef(null);
-  const location = useLocation();
   const navigate = useNavigate();
 
   const navItems = [
-  { name: 'Home', icon: '✦', sectionId: null, path: '/' },
-  { name: "Who Am I", icon: null, sectionId: 'about', path: '/about' },
-  { name: 'Work Shop', icon: null, sectionId: 'workshop', path: '/workshop' },
-  { name: 'Chat Now', icon: null, sectionId: 'contact', path: '/findme' } // contact section home page pe hai
-];
-
-useEffect(() => {
-  const currentPath = location.pathname;
-  
-  if (currentPath === '/about') {
-    setActiveLink(1); 
-    return;
-  }
-  if (currentPath === '/workshop') {
-    setActiveLink(2); 
-    return;
-  }
-  if (currentPath === '/activity') {
-    setActiveLink(0); 
-    return;
-  }
-  if (currentPath === '/skills') {
-    setActiveLink(0); 
-    return;
-  }
-  
-
-  if (currentPath === '/') {
-    const handleScroll = () => {
-      const sections = ['workshop', 'about', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      if (window.scrollY < 300) {
-        setActiveLink(0);
-        return;
-      }
-
-      for (let i = 0; i < sections.length; i++) {
-        const element = document.getElementById(sections[i]);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveLink(i + 1);
-            return;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }
-}, [location]);
+    { name: 'Home', icon: '✦', path: '/' },
+    { name: "Who Am I", icon: null, path: '/' },
+    { name: 'Work Shop', icon: null, path: '/' },
+    { name: 'Chat Now', icon: null, path: '/' }
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -79,29 +28,10 @@ useEffect(() => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleNavClick = (index, sectionId) => {
+  const handleNavClick = (index) => {
     setActiveLink(index);
-    
-    // Navigate to home if not already there
-    if (location.pathname !== '/') {
-      navigate('/');
-    }
-    
-    // Scroll to section
-    setTimeout(() => {
-      if (sectionId === null) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }, location.pathname !== '/' ? 100 : 0);
+    navigate('/');
   };
-
-
-
 
   return (
     <header>
@@ -109,7 +39,7 @@ useEffect(() => {
         <div className="navbar-container">
           <div 
             className="logo headline" 
-            onClick={() => handleNavClick(0, null)}
+            onClick={() => handleNavClick(0)}
             style={{ cursor: 'pointer' }}
           >
             ALOK.DEV
@@ -123,11 +53,11 @@ useEffect(() => {
             {navItems.map((item, index) => (
               <Link
                 key={index}
-                to={`/${item.name}`}
+                to={item.path}
                 className={`nav-link ${activeLink === index ? 'active' : ''}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick(index, item.sectionId);
+                  handleNavClick(index);
                 }}
               >
                 {item.icon && <span className="nav-link-icon">{item.icon}</span>}

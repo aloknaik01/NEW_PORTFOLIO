@@ -63,9 +63,10 @@ const Contact = () => {
     ]);
   };
 
-  useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [logs]);
+  // ❌ REMOVED THIS - IT WAS CAUSING AUTO-SCROLL
+  // useEffect(() => {
+  //   logEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [logs]);
 
   useEffect(() => {
     if (isConfigured) {

@@ -7,7 +7,7 @@ import { SkillsMatrix } from "./components/SkillsMatrix/SkillsMatrix";
 import Header from "./components/header/Header";
 import { Footer } from "./components/Footer/Footer";
 import NotFound from "./pages/notfound/NotFound";
-import { Contact } from "lucide-react";
+import Contact from "./components/findme/Contact";
 
 function App() {
   return (
