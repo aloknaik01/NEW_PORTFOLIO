@@ -70,9 +70,9 @@ const Contact = () => {
   useEffect(() => {
     if (isConfigured) {
       emailjs.init(EMAILJS_CONFIG.publicKey);
-      addLog("✓ EmailJS initialized.");
+      addLog("EmailJS initialized.");
     } else {
-      addLog("⚠ EmailJS not configured.");
+      addLog("EmailJS not configured.");
     }
   }, [isConfigured]);
 
@@ -81,7 +81,7 @@ const Contact = () => {
 
     if (!isConfigured) {
       toast.error("EmailJS Not Configured!");
-      addLog("⚠ ERROR: Missing EmailJS credentials");
+      addLog("ERROR: Missing EmailJS credentials");
       return;
     }
 
@@ -109,7 +109,7 @@ const Contact = () => {
         )
         .then(() => {
           setFormStatus("success");
-          addLog("✓ Payload delivered successfully.");
+          addLog("Payload delivered successfully.");
 
           toast.success("Message Transmitted Successfully!");
 
@@ -124,7 +124,7 @@ const Contact = () => {
         })
         .catch((err) => {
           setFormStatus("idle");
-          addLog(`⚠ ERROR: ${err.text || "Transmission failed"}`);
+          addLog(`ERROR: ${err.text || "Transmission failed"}`);
           toast.error("Transmission Failed");
         });
     }, 2200);
