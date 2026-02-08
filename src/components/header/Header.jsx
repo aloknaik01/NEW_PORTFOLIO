@@ -140,9 +140,9 @@ useEffect(() => {
             <Link target='_blank' to="https://github.com/aloknaik01" className="icon-btn">
               <FaGithub size={23} />
             </Link>
-            <button className="icon-btn">
-              <FaLinkedinIn target='_blank'  to="https://www.linkedin.com/in/alok-kumar-naik-a18b4b365/" size={25} />
-            </button>
+            <Link className="icon-btn" target='_blank'  to="https://www.linkedin.com/in/alok-kumar-naik-107bab263/" >
+              <FaLinkedinIn size={25} />
+            </Link>
             
             {/* Sync Resume with Click Menu */}
             <div className="relative" ref={menuRef}>
