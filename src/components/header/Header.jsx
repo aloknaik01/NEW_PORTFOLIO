@@ -1,21 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { ChevronDown, Download, Eye } from 'lucide-react';
+import { useScroll } from '../../context/Scrollcontext';
 
 export default function Header() {
-  const [activeLink, setActiveLink] = useState(0);
   const [showResumeMenu, setShowResumeMenu] = useState(false);
   const menuRef = useRef(null);
-  const navigate = useNavigate();
+  const location = useLocation();
+  const { activeSection, scrollToSection } = useScroll();
 
   const navItems = [
-    { name: 'Home', icon: '✦', path: '/' },
-    { name: "Who Am I", icon: null, path: '/' },
-    { name: 'Work Shop', icon: null, path: '/' },
-    { name: 'Chat Now', icon: null, path: '/' }
+    { name: 'Home', icon: '✦', sectionId: 'home' },
+    { name: "Who Am I", icon: null, sectionId: 'about' },
+    { name: 'Work Shop', icon: null, sectionId: 'workshop' },
+    { name: 'Chat Now', icon: null, sectionId: 'contact' }
   ];
+
+  // Map section IDs to nav item indices
+  const getActiveIndex = () => {
+    const index = navItems.findIndex(item => item.sectionId === activeSection);
+    return index !== -1 ? index : 0;
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -28,9 +35,15 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleNavClick = (index) => {
-    setActiveLink(index);
-    navigate('/');
+  const handleNavClick = (sectionId) => {
+    // Always ensure we're on the home page
+    if (location.pathname !== '/') {
+      window.location.href = '/';
+      // Store the section to scroll to after navigation
+      localStorage.setItem('scrollToSection', sectionId);
+    } else {
+      scrollToSection(sectionId);
+    }
   };
 
   return (
@@ -39,7 +52,7 @@ export default function Header() {
         <div className="navbar-container">
           <div 
             className="logo headline" 
-            onClick={() => handleNavClick(0)}
+            onClick={() => handleNavClick('home')}
             style={{ cursor: 'pointer' }}
           >
             ALOK.DEV
@@ -48,21 +61,17 @@ export default function Header() {
           <div className="nav-links">
             <div
               className="nav-link-bg"
-              data-active-index={activeLink}
+              data-active-index={getActiveIndex()}
             />
             {navItems.map((item, index) => (
-              <Link
+              <button
                 key={index}
-                to={item.path}
-                className={`nav-link ${activeLink === index ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(index);
-                }}
+                className={`nav-link ${activeSection === item.sectionId ? 'active' : ''}`}
+                onClick={() => handleNavClick(item.sectionId)}
               >
                 {item.icon && <span className="nav-link-icon">{item.icon}</span>}
                 {item.name}
-              </Link>
+              </button>
             ))}
           </div>
 

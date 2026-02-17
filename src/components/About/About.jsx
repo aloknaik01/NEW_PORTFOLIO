@@ -6,7 +6,6 @@ import img from "/boy.webp";
 const About = () => {
   return (
     <section id="about" className="py-24 px-5 relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-80 h-80 bg-neon-lime/5 blur-[100px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto">
@@ -89,10 +88,13 @@ const About = () => {
             <div className="absolute -bottom-5 -right-5 w-10 h-10 border-b-2 border-r-2 border-neon-lime"></div>
 
             <div className="relative aspect-[4/5]  rounded-[1.75rem] overflow-hidden">
-              <img
+              {/* <img
                 src={img}
                 alt="Alok Naik"
                 className="w-full h-full object-cover scale-[0.96] grayscale group-hover:grayscale-0 transition-all duration-700"
+              /> */}
+              <video src="Abstract_wire_human_202602162336_k0nyt.mp4" className="w-full h-full object-cover" autoPlay="true"
+              loop="true" muted="true"
               />
 
               <div className="absolute inset-0 pointer-events-none">

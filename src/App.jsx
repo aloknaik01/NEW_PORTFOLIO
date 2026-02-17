@@ -8,63 +8,66 @@ import Header from "./components/header/Header";
 import { Footer } from "./components/Footer/Footer";
 import NotFound from "./pages/notfound/NotFound";
 import Contact from "./components/findme/Contact";
+import { ScrollProvider } from "./context/Scrollcontext";
 
 function App() {
   return (
-    <div className="hero-container">
-      <Header />
-      <Routes>
-        <Route path="/" element={<PopupFundHero />} />
+    <ScrollProvider>
+      <div className="hero-container">
+        <Header />
+        <Routes>
+          <Route path="/" element={<PopupFundHero />} />
 
-        <Route
-          path="/about"
-          element={
-            <div className="min-h-screen pt-20">
-              <About />
-            </div>
-          }
-        />
+          <Route
+            path="/about"
+            element={
+              <div className="min-h-screen pt-20">
+                <About />
+              </div>
+            }
+          />
 
-        <Route
-          path="/workshop"
-          element={
-            <div className="min-h-screen pt-20">
-              <Workshop />
-            </div>
-          }
-        />
+          <Route
+            path="/workshop"
+            element={
+              <div className="min-h-screen pt-20">
+                <Workshop />
+              </div>
+            }
+          />
 
-        <Route
-          path="/activity"
-          element={
-            <div className="min-h-screen pt-20">
-              <GithubActivity />
-            </div>
-          }
-        />
+          <Route
+            path="/activity"
+            element={
+              <div className="min-h-screen pt-20">
+                <GithubActivity />
+              </div>
+            }
+          />
 
-        <Route
-          path="/skills"
-          element={
-            <div className="min-h-screen pt-20">
-              <SkillsMatrix />
-            </div>
-          }
-        />
-        <Route
-          path="/findme"
-          element={
-            <div className="min-h-screen pt-20">
-              <Contact />
-            </div>
-          }
-        />
+          <Route
+            path="/skills"
+            element={
+              <div className="min-h-screen pt-20">
+                <SkillsMatrix />
+              </div>
+            }
+          />
+          <Route
+            path="/findme"
+            element={
+              <div className="min-h-screen pt-20">
+                <Contact />
+              </div>
+            }
+          />
 
-        {/* 404 Not Found */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </div>
+          {/* 404 Not Found */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </div>
+    </ScrollProvider>
   );
 }
 
