@@ -314,7 +314,7 @@ export default function About() {
                     Base Location
                   </div>
                   <div className="text-[0.78rem] font-bold text-white/72 uppercase tracking-tight">
-                    Bangalore, IN
+                    Aska,Odisha, IN
                   </div>
                 </motion.div>
 
