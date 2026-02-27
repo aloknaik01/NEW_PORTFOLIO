@@ -6,12 +6,12 @@ export const Footer = () => {
   const location = useLocation();
 
   const scrollTo = (id) => {
-    // If we're on home page, scroll to section
+ 
     if (location.pathname === '/') {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Navigate to home page first, then scroll
+
       navigate('/');
       setTimeout(() => {
         const el = document.getElementById(id);

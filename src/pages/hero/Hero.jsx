@@ -2,7 +2,7 @@ import About from "../../components/About/About";
 import BlurEntryHero from "../../components/Blurry/BlurEntryHero";
 import Contact from "../../components/findme/Contact";
 import GithubActivity from "../../components/GithubActivity/GithubActivity";
-import { SkillsMatrix } from "../../components/SkillsMatrix/SkillsMatrix";
+import  SkillsMatrix  from "../../components/SkillsMatrix/SkillsMatrix";
 import TerminalLine from "../../components/TerminalLine/TerminalLine";
 import Workshop from "../../components/Workshop/Workshop";
 import "./Hero.css";
@@ -30,8 +30,32 @@ export default function Hero() {
     <section className="hero-container">
       <div className="hero-content">
         <div className="hero-inner">
-          {/* Hero Section with ID */}
-          <div id="home" style={{ scrollMarginTop: '80px' }}>
+          {/* ── Hero Section with ID ── */}
+          <div id="home" style={{ scrollMarginTop: '80px' }} className="hero-home-section">
+
+            {/* ══════════════════════════════════════
+                BACKGROUND VIDEO LAYER
+                Sits behind everything in #home only
+            ══════════════════════════════════════ */}
+            <div className="hero-video-bg" aria-hidden="true">
+              <video
+                className="hero-video-element"
+                // src="https://cdn.pixabay.com/video/2022/08/21/128646-741704858_large.mp4"
+                src="/d.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+              {/* Dark overlay so text stays legible */}
+              <div className="hero-video-overlay" />
+              {/* Scanline effect for that cyberpunk look */}
+              <div className="hero-video-scanlines" />
+              {/* Radial vignette — darkens edges */}
+              <div className="hero-video-vignette" />
+            </div>
+            {/* ══════════════════════════════════════ */}
+
             <div className="badges">
               <span className="badge">Eat</span>
               <span className="badge badge-primary">Code</span>

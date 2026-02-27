@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 
-/* Refresh icon */
+
 const RefreshCw = ({ size = 16, className = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
