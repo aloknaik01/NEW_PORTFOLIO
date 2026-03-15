@@ -1,16 +1,17 @@
+import { useSelector } from "react-redux";
 import About from "../../components/About/About";
 import BlurEntryHero from "../../components/Blurry/BlurEntryHero";
 import Contact from "../../components/findme/Contact";
-import GithubActivity from "../../components/GithubActivity/GithubActivity";
-import  SkillsMatrix  from "../../components/SkillsMatrix/SkillsMatrix";
+import SkillsMatrix from "../../components/SkillsMatrix/SkillsMatrix";
 import TerminalLine from "../../components/TerminalLine/TerminalLine";
-import Workshop from "../../components/Workshop/Workshop";
+import ProjectsSection from "../../components/ProjectsNexus/ProjectsSection";
+import ApplicationsSection from "../../components/ProjectsNexus/ApplicationsSection";
 import "./Hero.css";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useScroll } from "../../context/Scrollcontext";
 
-export default function Hero() {
-  const { scrollToSection } = useScroll();
+export default memo(function Hero() {
+  const { user } = useSelector((state) => state.portfolio);
 
   useEffect(() => {
     // Check if there's a pending scroll from navigation
@@ -33,20 +34,17 @@ export default function Hero() {
           {/* ── Hero Section with ID ── */}
           <div id="home" style={{ scrollMarginTop: '80px' }} className="hero-home-section">
 
-            {/* ══════════════════════════════════════
-                BACKGROUND VIDEO LAYER
-                Sits behind everything in #home only
-            ══════════════════════════════════════ */}
-            <div className="hero-video-bg" aria-hidden="true">
-              <video
-                className="hero-video-element"
-                // src="https://cdn.pixabay.com/video/2022/08/21/128646-741704858_large.mp4"
-                src="/d.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
+            <div className="hero-video-bg" style={{ background: user?.heroVideoUrl ? 'transparent' : 'black' }} aria-hidden="true">
+              {user?.heroVideoUrl ? (
+                <video
+                  className="hero-video-element"
+                  src={user.heroVideoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : null}
               {/* Dark overlay so text stays legible */}
               <div className="hero-video-overlay" />
               {/* Scanline effect for that cyberpunk look */}
@@ -65,7 +63,7 @@ export default function Hero() {
             <TerminalLine />
 
             <div className="calligraphy-headline">
-              I'm - <span className="tube-text">Alok Naik</span>
+              I'm - <span className="tube-text">{user?.fullName || "Alok Naik"}</span>
               <BlurEntryHero />
             </div>
 
@@ -90,19 +88,20 @@ export default function Hero() {
           <div id="about" style={{ scrollMarginTop: '80px' }}>
             <About />
           </div>
-          
-          <div id="activity" style={{ scrollMarginTop: '80px' }}>
-            <GithubActivity />
-          </div>
-          
+
           <div id="skills" style={{ scrollMarginTop: '80px' }}>
             <SkillsMatrix />
           </div>
-          
-          <div id="workshop" style={{ scrollMarginTop: '80px' }}>
-            <Workshop />
+
+          <div id="applications" style={{ scrollMarginTop: '80px' }}>
+            <ApplicationsSection />
           </div>
-          
+
+          <div id="workshop" style={{ scrollMarginTop: '80px' }}>
+            <ProjectsSection />
+          </div>
+
+
           <div id="contact" style={{ scrollMarginTop: '80px' }}>
             <Contact />
           </div>
@@ -110,4 +109,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+});

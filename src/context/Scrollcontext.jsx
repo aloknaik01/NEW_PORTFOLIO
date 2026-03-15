@@ -14,7 +14,7 @@ export const ScrollProvider = ({ children }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = ['home', 'about', 'activity', 'skills', 'workshop', 'contact'];
+    const sections = ['home', 'about', 'skills', 'workshop'];
     
     const observerOptions = {
       root: null,
@@ -33,14 +33,23 @@ export const ScrollProvider = ({ children }) => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observedElements = new Set();
 
-    // Observe all sections
-    sections.forEach((sectionId) => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+    // Check for elements periodically since they are lazy-loaded
+    const checkAndObserve = () => {
+      sections.forEach((sectionId) => {
+        if (!observedElements.has(sectionId)) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            observer.observe(element);
+            observedElements.add(sectionId);
+          }
+        }
+      });
+    };
+
+    checkAndObserve();
+    const interval = setInterval(checkAndObserve, 500);
 
     // Get initial active section from localStorage
     const savedSection = localStorage.getItem('activeSection');
@@ -49,6 +58,7 @@ export const ScrollProvider = ({ children }) => {
     }
 
     return () => {
+      clearInterval(interval);
       observer.disconnect();
     };
   }, []);

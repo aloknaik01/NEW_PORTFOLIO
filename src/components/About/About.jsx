@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, memo } from "react";
+import { useSelector } from "react-redux";
 import { MapPin, Briefcase, Fingerprint } from "lucide-react";
 import {
   motion,
@@ -9,7 +10,8 @@ import {
 
 const SP = { stiffness: 62, damping: 22, mass: 1 };
 
-export default function About() {
+export default memo(function About() {
+  const { user } = useSelector((state) => state.portfolio);
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -74,30 +76,30 @@ export default function About() {
   );
 
   const i1Y = sp(useTransform(scrollYProgress, [0.34, 0.56], [50, 0]));
-  const i1O = useTransform(scrollYProgress, [0.34, 0.54, 0.8, 0.93], [0, 1, 1, 0]);
+  const i1O = useTransform(scrollYProgress, [0.3, 0.5, 0.85, 0.96], [0, 1, 1, 0]);
   const i2Y = sp(useTransform(scrollYProgress, [0.41, 0.62], [50, 0]));
-  const i2O = useTransform(scrollYProgress, [0.41, 0.60, 0.8, 0.93], [0, 1, 1, 0]);
+  const i2O = useTransform(scrollYProgress, [0.35, 0.55, 0.85, 0.96], [0, 1, 1, 0]);
 
   /* ── Accent line grows as title reveals ── */
   const lineW = useTransform(scrollYProgress, [0.04, 0.26], [0, 32]);
 
   return (
-    
-  
+
+
     <section
       ref={sectionRef}
       id="about"
-      className="relative min-h-[100vh] overflow-hidden mt-10"
+      className="relative min-h-[82vh] mt-10"
       style={{ scrollMarginTop: "80px" }}
     >
 
-      
+
       <motion.div
         className="absolute inset-0 pointer-events-none select-none"
         style={{ opacity: bgOpacity }}
         aria-hidden="true"
       >
-     
+
         <motion.div
           className="absolute -left-[6%] top-[8%] w-[560px] h-[560px] rounded-full"
           style={{
@@ -106,11 +108,11 @@ export default function About() {
               "radial-gradient(circle, rgba(217,255,0,0.065) 0%, rgba(217,255,0,0.018) 48%, transparent 70%)",
           }}
         />
-  
+
         <motion.div
           className="absolute -right-[4%] top-[32%] w-[380px] h-[380px] rounded-full"
           style={{
-          
+
             y: useSpring(
               useTransform(scrollYProgress, [0, 1], ["10%", "-20%"]),
               { stiffness: 34, damping: 18, mass: 1.3 }
@@ -130,16 +132,16 @@ export default function About() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
       </motion.div>
 
-      
+
       <div
-        className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden"
+        className="sticky top-0 h-[82vh] flex flex-col justify-center"
         style={{ perspective: "1200px", perspectiveOrigin: "50% 50%" }}
       >
-        <div className="max-w-6xl mx-auto w-full px-6 md:px-10 lg:px-14">
+        <div className="max-w-4xl mx-auto w-full px-6 md:px-10 lg:px-14">
 
-     
+
           <motion.div
-            className="mb-12"
+            className="mb-4"
             style={{
               y: titleY,
               opacity: titleOpacity,
@@ -158,7 +160,7 @@ export default function About() {
               </span>
             </div>
 
-            <h3 className="text-[3.8rem] md:text-[5.5rem] lg:text-[7rem] font-black italic tracking-tighter leading-[0.88] text-white">
+            <h3 className="text-[2.8rem] md:text-[4.2rem] lg:text-[5.2rem] font-black italic tracking-tighter leading-[0.88] text-white">
               THE{" "}
               <span
                 className="text-transparent"
@@ -170,12 +172,12 @@ export default function About() {
             </h3>
           </motion.div>
 
-          <div className="grid lg:grid-cols-[1fr_340px] gap-8 items-start">
+          <div className="grid lg:grid-cols-[1fr_280px] gap-4 items-start">
 
-            
-            <div className="space-y-4">
 
-             
+            <div className="space-y-3">
+
+
               <motion.div
                 className="relative overflow-hidden rounded-2xl"
                 style={{
@@ -223,7 +225,7 @@ export default function About() {
                   </div>
                 </div>
 
-                <div className="px-7 py-8 space-y-6">
+                <div className="px-6 py-6 space-y-4">
                   <h4 className="text-[0.9rem] font-black uppercase tracking-[0.15em] text-white/88 italic">
                     Mission Parameters
                   </h4>
@@ -236,12 +238,7 @@ export default function About() {
                       filter: useTransform(p1B, (v) => `blur(${v}px)`),
                     }}
                   >
-                    I don't just write code — I{" "}
-                    <span className="text-white/80 font-medium italic underline decoration-[#D9FF00]/60 decoration-[1.5px] underline-offset-[5px]">
-                      engineer solutions
-                    </span>{" "}
-                    that bridge complex backend logic with precise,
-                    intuitive interfaces.
+                    {user?.aboutMe || "I don't just write code — I engineer solutions that bridge complex backend logic with precise, intuitive interfaces."}
                   </motion.p>
 
                   {/* PLANE Z3 · Para 2 */}
@@ -270,7 +267,7 @@ export default function About() {
                     style={{ opacity: p3O }}
                   >
                     <p className="font-handwriting text-[1.85rem] text-white/46 italic -rotate-[1.5deg]">
-                      Alok Naik
+                      {user?.fullName || "Alok Naik"}
                     </p>
                     <div className="space-y-[3px]">
                       <div className="w-[52px] h-px bg-[#D9FF00]/26" />
@@ -288,17 +285,14 @@ export default function About() {
                 </div>
               </motion.div>
 
-              
+
               <div className="grid grid-cols-2 gap-3">
                 <motion.div
                   className="group relative p-5 rounded-xl overflow-hidden cursor-default"
                   style={{
-                    y: i1Y,
-                    opacity: i1O,
                     background: "rgba(255,255,255,0.02)",
                     border: "1px solid rgba(255,255,255,0.06)",
                     transform: "perspective(1200px) translateZ(10px)",
-                    willChange: "transform, opacity",
                   }}
                 >
                   <div
@@ -310,10 +304,10 @@ export default function About() {
                     style={{ background: "rgba(217,255,0,0.36)" }}
                   />
                   <MapPin size={15} className="text-[#D9FF00] mb-3 opacity-75" />
-                  <div className="text-[9px] font-mono text-white/24 uppercase tracking-[0.3em] mb-1">
+                  <div className="text-[9px] font-mono text-white/40 uppercase tracking-[0.3em] mb-1">
                     Base Location
                   </div>
-                  <div className="text-[0.78rem] font-bold text-white/72 uppercase tracking-tight">
+                  <div className="text-[0.78rem] font-bold text-white/90 uppercase tracking-tight">
                     Aska,Odisha, IN
                   </div>
                 </motion.div>
@@ -321,12 +315,9 @@ export default function About() {
                 <motion.div
                   className="group relative p-5 rounded-xl overflow-hidden cursor-default"
                   style={{
-                    y: i2Y,
-                    opacity: i2O,
                     background: "rgba(255,255,255,0.02)",
                     border: "1px solid rgba(255,255,255,0.06)",
                     transform: "perspective(1200px) translateZ(10px)",
-                    willChange: "transform, opacity",
                   }}
                 >
                   <div
@@ -338,17 +329,17 @@ export default function About() {
                     style={{ background: "rgba(56,189,248,0.36)" }}
                   />
                   <Briefcase size={15} className="text-sky-400 mb-3 opacity-75" />
-                  <div className="text-[9px] font-mono text-white/24 uppercase tracking-[0.3em] mb-1">
+                  <div className="text-[9px] font-mono text-white/40 uppercase tracking-[0.3em] mb-1">
                     Status
                   </div>
-                  <div className="text-[0.78rem] font-bold text-white/72 uppercase tracking-tight italic">
+                  <div className="text-[0.78rem] font-bold text-white/90 uppercase tracking-tight italic">
                     Open to Sync
                   </div>
                 </motion.div>
               </div>
             </div>
 
-        
+
             <motion.div
               className="relative group"
               style={{
@@ -386,22 +377,37 @@ export default function About() {
                     "0 50px 110px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04)",
                 }}
               >
-                <video
-                  src="Abstract_wire_human_202602162336_k0nyt.mp4"
-                  className="w-full h-full object-cover transition-all duration-700"
-                  style={{ filter: "grayscale(100%) brightness(0.82)" }}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  onMouseEnter={(e) =>
-                    (e.target.style.filter = "grayscale(0%) brightness(1)")
-                  }
-                  onMouseLeave={(e) =>
+                {user?.avatarType === "video" ? (
+                  <video
+                    src={user.avatarUrl}
+                    className="w-full h-full object-cover transition-all duration-700"
+                    style={{ filter: "grayscale(100%) brightness(0.82)" }}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onMouseEnter={(e) =>
+                      (e.target.style.filter = "grayscale(0%) brightness(1)")
+                    }
+                    onMouseLeave={(e) =>
                     (e.target.style.filter =
                       "grayscale(100%) brightness(0.82)")
-                  }
-                />
+                    }
+                  />
+                ) : (
+                  <img
+                    src={user?.avatarUrl || ""}
+                    className="w-full h-full object-cover transition-all duration-700"
+                    style={{ filter: "grayscale(100%) brightness(0.82)" }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.filter = "grayscale(0%) brightness(1)")
+                    }
+                    onMouseLeave={(e) =>
+                    (e.target.style.filter =
+                      "grayscale(100%) brightness(0.82)")
+                    }
+                  />
+                )}
 
                 {/* Scanline sweep */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -500,4 +506,4 @@ export default function About() {
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
     </section>
   );
-}
+});

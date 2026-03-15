@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import './HeroTextEffect.css';
 
 const roles = ["React Maestro", "Java Enthusiast", "FullStack Alchemist"];
 
-export default function BlurEntryHero() {
+export default memo(function BlurEntryHero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -23,7 +23,7 @@ export default function BlurEntryHero() {
   const letters = roles[roleIndex].split("");
 
   return (
-    <div style={{
+    <div className="relative" style={{
       height: "auto",
       lineHeight: "1.1",
       display: "flex",
@@ -36,7 +36,14 @@ export default function BlurEntryHero() {
         {visible && (
           <motion.div
             key={roleIndex}
-            style={{ display: "flex", fontFamily: "'Caveat', cursive", fontSize: "3rem", color: "#fff" }}
+            initial={false}
+            className="relative flex items-center justify-center"
+            style={{ 
+              fontFamily: "'Caveat', cursive", 
+              fontSize: "3rem", 
+              color: "#fff",
+              position: "relative" // Reinforce with inline style too
+            }}
           >
             {letters.map((letter, index) => (
               <motion.span
@@ -47,16 +54,16 @@ export default function BlurEntryHero() {
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 style={{
                   display: "inline-block",
-                  marginRight: letter === " " ? "0.6rem" : "0"
+                  marginRight: letter === " " ? "0.6rem" : "0",
+                  position: "relative" // Ensure spans are also relative
                 }}
               >
                 {letter === " " ? "\u00A0" : letter}
               </motion.span>
             ))}
-
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-}
+});

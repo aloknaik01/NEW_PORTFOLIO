@@ -96,6 +96,7 @@
 /* Active Background Indicator */
 .nav-link-bg {
   position: absolute;
+  left: 0;
   background: var(--color-nav-active-bg);
   backdrop-filter: blur(10px);
   border-radius: 50px;
@@ -104,27 +105,6 @@
   height: calc(100% - 8px);
   top: 4px;
   pointer-events: none;
-}
-
-/* Dynamic positioning based on active index */
-.nav-link-bg[data-active-index="0"] {
-  left: 4px;
-  width: calc(25% - 5px);
-}
-
-.nav-link-bg[data-active-index="1"] {
-  left: calc(25% + 1px);
-  width: calc(25% - 5px);
-}
-
-.nav-link-bg[data-active-index="2"] {
-  left: calc(50% - 2px);
-  width: calc(25% - 5px);
-}
-
-.nav-link-bg[data-active-index="3"] {
-  left: calc(75% - 5px);
-  width: calc(25% - 5px);
 }
 
 /* Navigation Actions */

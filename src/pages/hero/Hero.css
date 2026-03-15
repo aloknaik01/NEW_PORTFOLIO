@@ -254,6 +254,13 @@
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .hero-video-bg {
+    display: none;
+  }
+}
+
+
 /* ── THE VIDEO ITSELF ── */
 .hero-video-element {
   position: absolute;

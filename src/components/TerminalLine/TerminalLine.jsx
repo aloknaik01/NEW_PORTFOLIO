@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import "./TerminalLine.css";
 
 const SNIPPETS = [
@@ -8,7 +8,7 @@ const SNIPPETS = [
   { text: "Stream.of(frontend, backend).forEach(this::master)", theme: "stream" },
 ];
 
-export default function TerminalLine() {
+export default memo(function TerminalLine() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -28,4 +28,4 @@ export default function TerminalLine() {
       </div>
     </div>
   );
-}
+});
