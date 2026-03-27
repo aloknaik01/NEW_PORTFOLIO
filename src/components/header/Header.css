@@ -1,4 +1,4 @@
-/* Fixed Header Container */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -9,14 +9,11 @@
   align-items: center;
   padding: var(--spacing-xl) 0;
   background: var(--color-bg-primary);  
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);  */
   z-index: var(--z-index-navbar);
   transition: all 0.3s ease;    
   height: 75px;
  background: transparent; 
-
 }
-
 .navbar-container {
   width: 100%;
   max-width: var(--container-max-width-2xl);
@@ -27,8 +24,6 @@
   align-items: center;
   gap: var(--spacing-lg);
 }
-
-/* Logo */
 .logo {
   font-size: var(--font-size-logo);
   font-weight: var(--font-weight-bold);
@@ -38,13 +33,10 @@
   transition: var(--transition-normal);
   justify-self: start;
 }
-
 .logo:hover {
   color: var(--color-accent-yellow);
   transform: scale(1.05);
 }
-
-/* Navigation Links Container */
 .nav-links {
   display: flex;
   gap: 4px;
@@ -58,8 +50,6 @@
   position: relative;
   justify-self: center;
 }
-
-/* Individual Nav Link */
 .nav-link {
   color: var(--color-text-secondary);
   text-decoration: none;
@@ -78,22 +68,16 @@
   border: none;
   cursor: pointer;
 }
-
 .nav-link:hover {
   color: var(--color-text-primary);
 }
-
 .nav-link.active {
   color: var(--color-text-primary);
 }
-
-/* Nav Link Icon */
 .nav-link-icon {
   font-size: 10px;
   line-height: 1;
 }
-
-/* Active Background Indicator */
 .nav-link-bg {
   position: absolute;
   left: 0;
@@ -106,16 +90,12 @@
   top: 4px;
   pointer-events: none;
 }
-
-/* Navigation Actions */
 .nav-actions {
   display: flex;
   gap: var(--spacing-md);
   align-items: center;
   justify-self: end;
 }
-
-/* Icon Button */
 .icon-btn {
   background: transparent;
   border: none;
@@ -131,17 +111,13 @@
   padding: 0;
   border-radius: var(--radius-icon-btn);
 }
-
 .icon-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
-
 .icon-btn:active {
   transform: translateY(0);
 }
-
-/* Launch Button */
 .launch-btn {
   background: var(--color-accent-yellow);
   color: var(--color-bg-primary);
@@ -157,45 +133,33 @@
   gap: var(--spacing-xs);
   white-space: nowrap;
 }
-
 .launch-btn:hover {
   background: var(--color-accent-yellow-hover);
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
-
 .launch-btn:active {
   transform: translateY(-1px);
 }
-
-/*  RESPONSIVE BREAKPOINTS  */
-
-/* Tablet & Mobile: hide center nav links */
 @media (max-width: 1024px) {
   .nav-links {
     display: none !important;
   }
-
   .navbar-container {
     grid-template-columns: 1fr auto;
   }
 }
-
-/* Mobile further spacing adjustment */
 @media (max-width: 640px) {
   .navbar {
     padding: var(--spacing-md) 0;
   }
-
   .nav-actions {
     gap: 10px;
   }
-
   .launch-btn {
     padding: 8px 16px;
     font-size: 12px;
   }
-
   .icon-btn {
     width: 32px;
     height: 32px;

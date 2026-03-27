@@ -16,7 +16,6 @@ import {
 
 const SP = { stiffness: 62, damping: 22, mass: 1 };
 
-/* ── Orbit node item ── */
 const OrbitItem = memo(function OrbitItem({
   skill,
   angle,
@@ -41,7 +40,7 @@ const OrbitItem = memo(function OrbitItem({
       whileHover={{ scale: 1.25 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
     >
-      {/* Glow ring */}
+
       <motion.div
         className="absolute inset-0 rounded-full"
         animate={{
@@ -64,7 +63,6 @@ const OrbitItem = memo(function OrbitItem({
           alt={skill.title} 
           className="w-7 h-7 object-contain transition-all" 
           style={{ 
-            filter: isActive ? "none" : "grayscale(1) opacity(0.5)",
             filter: isActive ? `drop-shadow(0 0 8px ${accentColor})` : "grayscale(1) opacity(0.5)"
           }}
         />
@@ -72,7 +70,7 @@ const OrbitItem = memo(function OrbitItem({
     </motion.button>
   );
 });
-/* ── Central detail panel ── */
+
 const DetailPanel = memo(function DetailPanel({ skill, accentColor }) {
   return (
     <motion.div
@@ -81,22 +79,23 @@ const DetailPanel = memo(function DetailPanel({ skill, accentColor }) {
       animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
       exit={{ opacity: 0, scale: 0.85, filter: "blur(10px)" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="text-center"
+      className="text-center relative flex justify-center items-center"
     >
 
-      <h4 className="text-2xl font-black tracking-tight text-white mb-1 uppercase italic">
-        {skill.title}
-      </h4>
-      <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-muted-foreground mb-6">
-        {skill.category ? `System: ${skill.category}` : "Protocol: Operational"}
-      </p>
+      <div className="absolute bottom-full mb-2 md:mb-4 w-[280px] left-1/2 -translate-x-1/2 pointer-events-none">
+        <h4 className="text-xl md:text-2xl font-black tracking-tight text-white mb-1 uppercase italic drop-shadow-md">
+          {skill.title}
+        </h4>
+        <p className="text-[8px] md:text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-muted-foreground drop-shadow-md">
+          {skill.category ? `System: ${skill.category}` : "Protocol: Operational"}
+        </p>
+      </div>
 
-      {/* Circular progress */}
-      <div className="relative w-32 h-32 mx-auto">
+      <div className="relative w-28 h-28 md:w-32 md:h-32 mx-auto">
         <svg className="w-full h-full -rotate-90 overflow-visible filter drop-shadow-[0_0_12px_rgba(0,0,0,0.5)]" viewBox="0 0 100 100">
-          {/* Background track */}
+
           <circle cx="50" cy="50" r="44" fill="none" stroke="hsla(240,10%,15%,1)" strokeWidth="3" />
-          {/* Glowing outer ring */}
+
           <circle 
             cx="50" cy="50" r="44" fill="none" 
             stroke={accentColor} 
@@ -116,8 +115,8 @@ const DetailPanel = memo(function DetailPanel({ skill, accentColor }) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-mono text-xs font-bold text-muted-foreground tracking-tighter mb-[-2px]">LVL</span>
-          <span className="font-mono text-2xl font-black" style={{ color: accentColor, textShadow: `0 0 15px ${accentColor}60` }}>
+          <span className="font-mono text-[10px] md:text-xs font-bold text-muted-foreground tracking-tighter mb-[-2px]">LVL</span>
+          <span className="font-mono text-xl md:text-2xl font-black" style={{ color: accentColor, textShadow: `0 0 15px ${accentColor}60` }}>
             {skill.proficiency}
           </span>
         </div>
@@ -138,7 +137,7 @@ export default memo(function SkillsMatrix() {
   ];
 
   const currentCategoryObj = categories.find(c => c.id === activeCategory);
-  
+
   const filteredSkills = useMemo(() => {
     if (activeCategory === "All") return skills;
     return skills.filter(s => s.category === activeCategory);
@@ -160,7 +159,14 @@ export default memo(function SkillsMatrix() {
   const titleOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
   const orbitRotate = useSpring(useTransform(scrollYProgress, [0, 1], [0, 45]), SP);
 
-  const radius = 180;
+  const [radius, setRadius] = useState(180);
+
+  useEffect(() => {
+    const handleResize = () => setRadius(window.innerWidth < 640 ? 125 : window.innerWidth < 1024 ? 160 : 180);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section 
@@ -168,7 +174,7 @@ export default memo(function SkillsMatrix() {
       ref={sectionRef} 
       className="relative py-12 overflow-hidden bg-black" 
     >
-      {/* Background Ambience */}
+
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-40 transition-colors duration-700"
@@ -188,7 +194,7 @@ export default memo(function SkillsMatrix() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 md:px-14 relative z-10">
-        {/* Header section with categories */}
+
         <div className="flex flex-col items-center mb-10">
           <motion.div style={{ opacity: titleOpacity }} className="text-center mb-4">
             <span className="text-primary font-mono text-[10px] font-bold uppercase tracking-[0.5em] mb-2 block">
@@ -205,13 +211,10 @@ export default memo(function SkillsMatrix() {
 
         </div>
 
-        {/* ── Orbit Visualization ── */}
         <div className="flex flex-col items-center">
 
-          {/* Desktop: three-column layout with orbit in center */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-2 w-full">
 
-            {/* Left Column */}
             <div className="hidden lg:flex flex-col gap-3">
               {filteredSkills.slice(0, Math.ceil(filteredSkills.length / 2)).map((skill, i) => (
                 <motion.button
@@ -232,39 +235,50 @@ export default memo(function SkillsMatrix() {
                   </div>
                   <div>
                     <div className={`text-sm font-black tracking-tight uppercase ${activeIndex === i ? "text-white" : "text-muted-foreground"}`}>{skill.title}</div>
-                    <div className="text-[8px] text-muted-foreground/40 font-mono font-bold tracking-widest uppercase mt-1">Node: {i + 1} // Sync: OK</div>
+                    <div className="text-[8px] text-muted-foreground/40 font-mono font-bold tracking-widest uppercase mt-1">Node: {i + 1}</div>
                   </div>
                 </motion.button>
               ))}
             </div>
 
-            {/* Center Orbit Radar — responsive size via scale/clamp */}
-            <div className="relative flex items-center justify-center py-8 px-4 lg:py-10 lg:px-6" style={{ width: "420px", height: "420px", maxWidth: "min(420px, 95vw)", maxHeight: "min(420px, 95vw)", margin: "0 auto" }}>
-              {/* Scaling wrapper so the whole orbit shrinks on small screens */}
-              <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "scale(min(1, calc(85vw / 360px)))", transformOrigin: "center" }}>
-                {/* Main Primary Orbit Ring */}
+            <div className="relative flex items-center justify-center py-8 px-4 lg:py-10 lg:px-6" style={{ width: "100%", height: `${radius * 2 + 80}px`, maxWidth: "420px", maxHeight: "420px", margin: "0 auto" }}>
+
+              <div className="absolute inset-0 flex items-center justify-center">
+
                 <motion.div
-                  className="absolute w-[360px] h-[360px] rounded-full"
+                  className="absolute rounded-full"
                   style={{
+                    width: radius * 2,
+                    height: radius * 2,
                     border: "1px solid",
                     borderColor: `${currentCategoryObj?.color}20`,
                     boxShadow: `inset 0 0 20px ${currentCategoryObj?.color}05, 0 0 20px ${currentCategoryObj?.color}05`,
                     rotate: orbitRotate,
                   }}
                 />
-                {/* Secondary Dashed Ring */}
+
                 <div
-                  className="absolute w-[260px] h-[260px] rounded-full"
-                  style={{ position: "absolute", top: "50px", left: "50px", border: "1px dashed", borderColor: "hsla(0,0%,100%,0.08)", opacity: 0.5 }}
+                  className="absolute rounded-full"
+                  style={{
+                    width: radius * 2 - 100,
+                    height: radius * 2 - 100,
+                    border: "1px dashed",
+                    borderColor: "hsla(0,0%,100%,0.08)",
+                    opacity: 0.5
+                  }}
                 />
-                {/* Outer Decorative Glow */}
+
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div
-                    className="w-[380px] h-[380px] rounded-full border border-white/5 animate-pulse-slow transition-colors duration-700"
-                    style={{ borderColor: `${currentCategoryObj?.color}15` }}
+                    className="rounded-full border border-white/5 animate-pulse-slow transition-colors duration-700"
+                    style={{
+                      width: radius * 2 + 20,
+                      height: radius * 2 + 20,
+                      borderColor: `${currentCategoryObj?.color}15`
+                    }}
                   />
                 </div>
-                {/* Orbit nodes */}
+
                 <AnimatePresence>
                   {filteredSkills.map((skill, i) => (
                     <OrbitItem
@@ -278,7 +292,7 @@ export default memo(function SkillsMatrix() {
                     />
                   ))}
                 </AnimatePresence>
-                {/* Center detail panel */}
+
                 <div className="absolute inset-0 flex items-center justify-center z-30">
                   <div className="w-52">
                     <AnimatePresence mode="wait">
@@ -291,7 +305,6 @@ export default memo(function SkillsMatrix() {
               </div>
             </div>
 
-            {/* Right Column */}
             <div className="hidden lg:flex flex-col gap-3">
               {filteredSkills.slice(Math.ceil(filteredSkills.length / 2)).map((skill, i) => {
                 const idx = i + Math.ceil(filteredSkills.length / 2);
@@ -314,7 +327,7 @@ export default memo(function SkillsMatrix() {
                     </div>
                     <div>
                       <div className={`text-sm font-black tracking-tight uppercase ${activeIndex === idx ? "text-white" : "text-muted-foreground"}`}>{skill.title}</div>
-                      <div className="text-[8px] text-muted-foreground/40 font-mono font-bold tracking-widest uppercase mt-1">Node: {idx + 1} // Sync: OK</div>
+                      <div className="text-[8px] text-muted-foreground/40 font-mono font-bold tracking-widest uppercase mt-1">Node: {idx + 1}</div>
                     </div>
                   </motion.button>
                 );
@@ -322,7 +335,6 @@ export default memo(function SkillsMatrix() {
             </div>
           </div>
 
-          {/* Mobile skill grid — hidden on desktop */}
           <div className="lg:hidden mt-8 grid grid-cols-2 gap-3 w-full">
             {filteredSkills.map((skill, i) => (
               <motion.button
@@ -346,7 +358,6 @@ export default memo(function SkillsMatrix() {
             ))}
           </div>
 
-          {/* ── Category Bar — bottom of section ── */}
           <div className="flex items-center justify-center gap-4 mt-10 pb-2">
             {categories.map((cat) => (
               <button

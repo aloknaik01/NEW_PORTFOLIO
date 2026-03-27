@@ -46,7 +46,7 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top nav bar */}
+
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 md:px-14 h-16 flex items-center justify-between">
           <Link to="/workshop" className="flex items-center gap-3 text-white/40 hover:text-white transition-colors">
@@ -71,7 +71,7 @@ export default function ProjectDetail() {
       </nav>
 
       <div className="pt-16">
-        {/* Hero Banner */}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -84,8 +84,7 @@ export default function ProjectDetail() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-          
-          {/* Title on banner */}
+
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -103,29 +102,25 @@ export default function ProjectDetail() {
           </div>
         </motion.div>
 
-        {/* Content */}
         <div className="max-w-7xl mx-auto px-6 md:px-14 py-8 lg:py-12">
           <div className="grid lg:grid-cols-[1fr_300px] gap-8 lg:gap-12">
-            
-            {/* Main content */}
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className="space-y-10"
             >
-              {/* Description */}
+
               <div>
                 <h2 className="font-mono text-[10px] text-white/30 uppercase tracking-[0.4em] mb-4">Dossier_Overview</h2>
                 <p className="text-base text-white/80 font-normal leading-relaxed">{project.description}</p>
               </div>
 
-              {/* Screenshots Gallery */}
               {screenshots.length > 0 && (
                 <div>
                   <h2 className="font-mono text-[10px] text-white/30 uppercase tracking-[0.4em] mb-4">Visual_Data</h2>
-                  
-                  {/* Main screenshot */}
+
                   <div className="relative border border-white/10 overflow-hidden mb-3 rounded-sm bg-black">
                     <AnimatePresence mode="wait">
                       <motion.img
@@ -158,7 +153,6 @@ export default function ProjectDetail() {
                     )}
                   </div>
 
-                  {/* Thumbnails */}
                   {screenshots.length > 1 && (
                     <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                       {screenshots.map((ss, i) => (
@@ -178,14 +172,13 @@ export default function ProjectDetail() {
               )}
             </motion.div>
 
-            {/* Sidebar */}
             <motion.aside
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
               className="space-y-6"
             >
-              {/* Meta card */}
+
               <div className="border border-white/10 p-5 space-y-5 bg-white/[0.02] rounded-sm">
                 <div>
                   <span className="font-mono text-[9px] text-white/30 uppercase tracking-[0.3em] block mb-1">Stack_Architecture</span>
@@ -208,7 +201,6 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              {/* Technologies */}
               <div className="border border-white/10 p-5 bg-white/[0.02] rounded-sm">
                 <span className="font-mono text-[9px] text-white/30 uppercase tracking-[0.3em] block mb-3">Encryption_Layer / Stack</span>
                 <div className="flex flex-wrap gap-2">
@@ -220,7 +212,6 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              {/* Links */}
               <div className="grid gap-3">
                 {project.projectLink && (
                   <a

@@ -12,14 +12,14 @@ export default memo(function Header() {
   const location = useLocation();
   const { activeSection, scrollToSection } = useScroll();
   const { user } = useSelector((state) => state.portfolio);
-  
+
   const navRefs = useRef([]);
   const [bgStyle, setBgStyle] = useState({ opacity: 0 });
 
   const navItems = [
-    { name: 'Home',      icon: '✦', sectionId: 'home'     },
-    { name: 'Who Am I',  icon: null, sectionId: 'about'   },
-    { name: 'Expertise', icon: null, sectionId: 'skills'  },
+    { name: 'Home', icon: '✦', sectionId: 'home' },
+    { name: 'Who Am I', icon: null, sectionId: 'about' },
+    { name: 'Expertise', icon: null, sectionId: 'skills' },
     { name: 'Work Shop', icon: null, sectionId: 'workshop' },
   ];
 
@@ -38,7 +38,6 @@ export default memo(function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Update background position when active section or window size changes
   useEffect(() => {
     const updateBg = () => {
       const index = getActiveIndex();
@@ -53,12 +52,11 @@ export default memo(function Header() {
     };
 
     updateBg();
-    
-    // Also update on window resize to keep it synced
+
     window.addEventListener('resize', updateBg);
-    // Short delay to ensure DOM is ready after section changes
+
     const timer = setTimeout(updateBg, 100);
-    
+
     return () => {
       window.removeEventListener('resize', updateBg);
       clearTimeout(timer);
@@ -74,7 +72,6 @@ export default memo(function Header() {
     }
   };
 
-  /** Open resume URL in a new tab (preview) */
   const handlePreview = () => {
     if (user?.resumeUrl) {
       window.open(user.resumeUrl, '_blank', 'noopener noreferrer');
@@ -82,10 +79,9 @@ export default memo(function Header() {
     setShowResumeMenu(false);
   };
 
-  /** Force-download the resume from Cloudinary */
   const handleDownload = () => {
     if (user?.resumeUrl) {
-      // Convert Cloudinary URL to a download URL by injecting fl_attachment
+
       const downloadUrl = user.resumeUrl.replace('/upload/', '/upload/fl_attachment/');
       const a = document.createElement('a');
       a.href = downloadUrl;
@@ -96,7 +92,7 @@ export default memo(function Header() {
     setShowResumeMenu(false);
   };
 
-  const githubUrl   = user?.githubURL   || 'https://github.com/aloknaik01';
+  const githubUrl = user?.githubURL || 'https://github.com/aloknaik01';
   const linkedinUrl = user?.linkedinURL || 'https://www.linkedin.com/in/alok-kumar-naik-107bab263/';
 
   return (
@@ -130,7 +126,7 @@ export default memo(function Header() {
           </div>
 
           <div className="nav-actions">
-            {/* GitHub icon — dynamic from backend */}
+
             <a
               href={githubUrl}
               target="_blank"
@@ -140,7 +136,6 @@ export default memo(function Header() {
               <FaGithub size={23} />
             </a>
 
-            {/* LinkedIn icon — dynamic from backend */}
             <a
               href={linkedinUrl}
               target="_blank"
@@ -150,7 +145,6 @@ export default memo(function Header() {
               <FaLinkedinIn size={25} />
             </a>
 
-            {/* Resume button — only functional when resume URL is available */}
             <div className="relative" ref={menuRef}>
               <button
                 onClick={() => setShowResumeMenu(!showResumeMenu)}
@@ -165,11 +159,9 @@ export default memo(function Header() {
                 />
               </button>
 
-              {/* Dropdown */}
               <div
-                className={`absolute top-full right-0 mt-2 w-48 transition-all duration-300 ease-out z-50 ${
-                  showResumeMenu ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
-                }`}
+                className={`absolute top-full right-0 mt-2 w-48 transition-all duration-300 ease-out z-50 ${showResumeMenu ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+                  }`}
               >
                 <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl p-1.5">
                   <button

@@ -8,7 +8,7 @@ const SP = { stiffness: 80, damping: 30, mass: 1 };
 
 export default memo(function ProjectsSection() {
   const { projects = [] } = useSelector((state) => state.portfolio);
-  
+
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -20,7 +20,7 @@ export default memo(function ProjectsSection() {
 
   return (
     <section id="workshop" ref={sectionRef} className="relative py-20 overflow-hidden bg-black text-white">
-      {/* Background grid */}
+
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 flex justify-around opacity-[0.04]">
           {[...Array(6)].map((_, i) => (
@@ -30,7 +30,7 @@ export default memo(function ProjectsSection() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 md:px-14 relative z-10">
-        {/* Header */}
+
         <div className="mb-16">
           <div className="flex items-center gap-6 mb-10">
             <motion.div style={{ width: lineW }} className="h-px bg-[#D9FF00]" />
@@ -49,7 +49,6 @@ export default memo(function ProjectsSection() {
           </div>
         </div>
 
-        {/* Project Grid */}
         {projects.length === 0 ? (
           <div className="py-40 flex flex-col items-center justify-center border border-dashed border-white/10 rounded-sm">
             <Terminal size={36} className="text-white/20 mb-6" />
@@ -67,7 +66,6 @@ export default memo(function ProjectsSection() {
           </div>
         )}
 
-        {/* Footer coordinates */}
         <div className="mt-20 flex justify-between items-center text-white/20 font-mono text-[9px] tracking-[0.3em] uppercase">
           <span>Archive v4.2_NEXUS</span>
           <span>{new Date().toLocaleDateString()}</span>

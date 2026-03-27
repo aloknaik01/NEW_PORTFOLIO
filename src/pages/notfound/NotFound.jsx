@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldAlert, Terminal, ArrowLeft, Cpu, Activity } from 'lucide-react';
-
 const NotFound = () => {
   const [logs, setLogs] = useState([]);
-
- 
   const MotionDiv = motion.div;
   const MotionSpan = motion.span;
-
   useEffect(() => {
     const errorLogs = [
       'CRITICAL: Resource_Address_Invalid',
@@ -18,7 +14,6 @@ const NotFound = () => {
       'Attempting emergency recovery...',
       'Uplink unstable. Please return to master node.'
     ];
-
     let current = 0;
     const interval = setInterval(() => {
       if (current < errorLogs.length) {
@@ -28,17 +23,13 @@ const NotFound = () => {
         clearInterval(interval);
       }
     }, 400);
-
     return () => clearInterval(interval);
   }, []);
-
   const goHome = () => {
     window.location.href = '/';
   };
-
   return (
     <div className="min-h-screen bg-[#000000] flex flex-col items-center justify-center p-6 relative overflow-hidden font-mono selection:bg-[#D9FF00] selection:text-black">
-      {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
@@ -47,12 +38,8 @@ const NotFound = () => {
           backgroundSize: '40px 40px'
         }}
       />
-
-      {/* Floating Blob */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#D9FF00]/5 rounded-full blur-[150px] animate-pulse" />
-
       <div className="relative z-10 max-w-2xl w-full text-center">
-        {/* 404 */}
         <div className="relative mb-8">
           <MotionDiv
             initial={{ opacity: 0, scale: 0.8 }}
@@ -61,7 +48,6 @@ const NotFound = () => {
           >
             404
           </MotionDiv>
-
           <div className="absolute inset-0 flex items-center justify-center">
             <MotionDiv
               animate={{
@@ -81,8 +67,6 @@ const NotFound = () => {
             </MotionDiv>
           </div>
         </div>
-
-        {/* Diagnostics */}
         <div className="glass border-white/5 bg-white/[0.02] p-8 rounded-[2.5rem] mb-12 text-left relative overflow-hidden group">
           <div className="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
             <ShieldAlert size={18} className="text-[#D9FF00] animate-pulse" />
@@ -90,7 +74,6 @@ const NotFound = () => {
               System_Diagnostic_Report
             </span>
           </div>
-
           <div className="space-y-2 h-32 overflow-hidden">
             {logs.map((log, i) => (
               <MotionDiv
@@ -103,20 +86,16 @@ const NotFound = () => {
                 <span>{log}</span>
               </MotionDiv>
             ))}
-
             <MotionSpan
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
               className="inline-block w-2 h-3 bg-[#D9FF00] align-middle ml-1"
             />
           </div>
-
           <div className="absolute top-0 right-0 p-4">
             <Cpu size={14} className="text-gray-800" />
           </div>
         </div>
-
-        {/* Actions */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
           <button
             onClick={goHome}
@@ -128,22 +107,18 @@ const NotFound = () => {
             />
             Recalibrate Uplink
           </button>
-
           <div className="flex items-center gap-4 px-8 py-4 glass border-white/5 rounded-full text-[9px] text-gray-500 font-bold uppercase tracking-[0.2em]">
             <Activity size={14} className="text-[#D9FF00] animate-pulse" />
             Status: Connection_Stable
           </div>
         </div>
       </div>
-
-      {/* Footer */}
       <div className="absolute bottom-10 flex items-center gap-3 opacity-20 group">
         <Terminal size={14} className="text-[#D9FF00]" />
         <span className="text-[10px] font-bold tracking-[0.5em] text-white">
-          ALOK.DEV // SECURITY_OVERRIDE
+          ALOK.DEV 
         </span>
       </div>
-
       <style>{`
         @keyframes glitch {
           0% { transform: translate(0); }
@@ -157,5 +132,4 @@ const NotFound = () => {
     </div>
   );
 };
-
 export default NotFound;

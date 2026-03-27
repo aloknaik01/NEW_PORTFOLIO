@@ -1,13 +1,11 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense, memo } from "react";
+import { lazy, Suspense, memo, useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { ScrollProvider } from "./context/Scrollcontext";
 import { usePortfolioData } from "./hooks/usePortfolioData";
 import { ReactLenis } from "lenis/react";
 
-// ── Lazy-loaded route chunks ──────────────────────────────────────────────────
-// Each page is a separate JS bundle — only downloaded when the user navigates to it.
 const PopupFundHero  = lazy(() => import("./pages/Mainpage/PopupFundHero"));
 const About          = lazy(() => import("./components/About/About"));
 const ProjectsSection = lazy(() => import("./components/ProjectsNexus/ProjectsSection"));
@@ -16,24 +14,31 @@ const Contact        = lazy(() => import("./components/findme/Contact"));
 const ProjectDetail  = lazy(() => import("./pages/ProjectDetail/ProjectDetail"));
 const NotFound       = lazy(() => import("./pages/notfound/NotFound"));
 
-// Minimal in-page fallback shown while a lazy chunk is loading
 const PageFallback = () => (
   <div className="min-h-screen bg-black flex items-center justify-center">
     <span className="w-1 h-8 bg-[#D9FF00] animate-pulse inline-block" />
   </div>
 );
 
-
 function App() {
   const { isLoading, isError } = usePortfolioData();
+  const [forceShowUI, setForceShowUI] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => setForceShowUI(true), 6000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const isProjectDetailPage = location.pathname.startsWith("/project/");
 
-  if (isLoading) {
+  const isActuallyLoading = isLoading && !forceShowUI;
+
+  if (isActuallyLoading) {
     return (
       <div className="min-h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden" style={{ perspective: '800px' }}>
-        {/* Moving Cyber-Grid Background */}
+
         <div 
           className="absolute inset-[-100%] top-[40%] origin-top opacity-10 md:opacity-20 pointer-events-none"
           style={{
@@ -43,29 +48,26 @@ function App() {
             animation: "gridScroll 2s linear infinite"
           }}
         />
-        
-        {/* Vignette to fade grid edges */}
+
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
 
-        {/* Central HUD */}
         <div className="relative z-10 flex flex-col items-center gap-8">
-          
-          {/* Circular Rings */}
+
           <div className="relative w-32 h-32 flex items-center justify-center">
-            {/* Outer dotted ring */}
+
             <svg className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite]" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="48" fill="none" stroke="#D9FF00" strokeWidth="1" strokeDasharray="4 6" opacity="0.3" />
             </svg>
-            {/* Middle progress ring */}
+
             <svg className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] animate-[spin_3s_ease-in-out_infinite_alternate]" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="48" fill="none" stroke="white" strokeWidth="1.5" strokeDasharray="80 220" opacity="0.5" />
             </svg>
-            {/* Inner solid fast ring */}
+
             <svg className="absolute inset-4 w-[calc(100%-32px)] h-[calc(100%-32px)] animate-[spin_1.5s_linear_infinite]" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="48" fill="none" stroke="#D9FF00" strokeWidth="2.5" strokeDasharray="40 260" strokeLinecap="round" style={{ filter: 'drop-shadow(0 0 8px #D9FF00)' }} />
             </svg>
-            
+
             <span className="font-mono text-[10px] text-[#D9FF00] tracking-[0.2em] font-bold uppercase animate-pulse">
               BOOT
             </span>
@@ -75,7 +77,7 @@ function App() {
             <div className="text-white font-black text-2xl md:text-3xl tracking-[0.4em] uppercase">
               ALOK<span className="text-[#D9FF00]">.DEV</span>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <div className="flex gap-1 items-end h-3">
                 <span className="w-1 bg-[#D9FF00] animate-[eq_1s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
@@ -176,7 +178,6 @@ function App() {
               }
             />
 
-            {/* 404 Not Found */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -46,11 +46,9 @@ const getToolColor = (tool, index) => {
   return palette[index % palette.length];
 };
 
-
 const ToolCard = memo(function ToolCard({ tool, index }) {
   const isFeatured = index < 2;
   const color = getToolColor(tool, index);
-
 
   return (
     <motion.div
@@ -66,7 +64,7 @@ const ToolCard = memo(function ToolCard({ tool, index }) {
       className={`group relative rounded-2xl glass-card overflow-hidden cursor-default ${isFeatured ? "md:col-span-1 row-span-1" : ""
         }`}
     >
-      {/* Background Image Watermark - High-Performance Animation */}
+
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
       >
@@ -83,7 +81,6 @@ const ToolCard = memo(function ToolCard({ tool, index }) {
         )}
       </div>
 
-      {/* Dynamic Glow behind card on hover */}
       <div
         className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"
         style={{ background: `${color}15` }}
@@ -114,8 +111,6 @@ const ToolCard = memo(function ToolCard({ tool, index }) {
           {tool.name}
         </h5>
 
-
-
         <p className="text-[11px] text-muted-foreground font-light leading-relaxed line-clamp-2 transition-opacity duration-300">
           {tool.description || "Production grade toolkit integration."}
         </p>
@@ -134,7 +129,6 @@ export default function ApplicationsSection() {
 
   const tools = apiApps || [];
 
-  // Memoize stats — only recompute when lengths change
   const stats = useMemo(() => [
     { label: "Tools Mastered", value: `${apiApps?.length || 0}+`, icon: <Zap size={14} /> },
     { label: "Skills Acquired", value: `${skills?.length || 0}+`, icon: <Cpu size={14} /> },
@@ -156,7 +150,7 @@ export default function ApplicationsSection() {
 
   return (
     <section id="applications" ref={sectionRef} className="relative py-16 overflow-hidden bg-black text-white">
-      {/* Background */}
+
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full"
@@ -176,7 +170,7 @@ export default function ApplicationsSection() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 md:px-14 relative">
-        {/* Section Header */}
+
         <motion.div style={{ opacity: titleOpacity }} className="mb-10">
           <div className="flex items-center gap-3 mb-5">
             <motion.div
@@ -210,7 +204,6 @@ export default function ApplicationsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -236,13 +229,11 @@ export default function ApplicationsSection() {
           ))}
         </motion.div>
 
-        {/* Tools Grid — Bento Style */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {tools.map((tool, i) => (
             <ToolCard key={tool.name || i} tool={tool} index={i} />
           ))}
         </div>
-
 
       </div>
     </section>

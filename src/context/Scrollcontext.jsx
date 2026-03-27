@@ -1,7 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
 const ScrollContext = createContext();
-
 export const useScroll = () => {
   const context = useContext(ScrollContext);
   if (!context) {
@@ -9,33 +7,25 @@ export const useScroll = () => {
   }
   return context;
 };
-
 export const ScrollProvider = ({ children }) => {
   const [activeSection, setActiveSection] = useState('home');
-
   useEffect(() => {
     const sections = ['home', 'about', 'skills', 'workshop'];
-    
     const observerOptions = {
       root: null,
       rootMargin: '-50% 0px -50% 0px',
       threshold: 0
     };
-
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-          // Update localStorage for persistence
           localStorage.setItem('activeSection', entry.target.id);
         }
       });
     };
-
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     const observedElements = new Set();
-
-    // Check for elements periodically since they are lazy-loaded
     const checkAndObserve = () => {
       sections.forEach((sectionId) => {
         if (!observedElements.has(sectionId)) {
@@ -47,22 +37,17 @@ export const ScrollProvider = ({ children }) => {
         }
       });
     };
-
     checkAndObserve();
     const interval = setInterval(checkAndObserve, 500);
-
-    // Get initial active section from localStorage
     const savedSection = localStorage.getItem('activeSection');
     if (savedSection) {
       setActiveSection(savedSection);
     }
-
     return () => {
       clearInterval(interval);
       observer.disconnect();
     };
   }, []);
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -71,7 +56,6 @@ export const ScrollProvider = ({ children }) => {
       localStorage.setItem('activeSection', sectionId);
     }
   };
-
   return (
     <ScrollContext.Provider value={{ activeSection, scrollToSection, setActiveSection }}>
       {children}

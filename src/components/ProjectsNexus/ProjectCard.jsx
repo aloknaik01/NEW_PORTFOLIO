@@ -15,8 +15,7 @@ const getCategoryColor = (category) => {
 export default memo(function ProjectCard({ project, index }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-  
-  // Memoize accent color — only recomputes if project.category changes
+
   const accentHsl = useMemo(() => getCategoryColor(project.category), [project.category]);
   const accent = useMemo(() => `hsl(${accentHsl})`, [accentHsl]);
 
@@ -38,8 +37,7 @@ export default memo(function ProjectCard({ project, index }) {
       onClick={handleCardClick}
     >
       <div className="relative grid lg:grid-cols-[1fr_280px] border border-white/10 hover:border-[#D9FF00]/30 bg-[#0A0A0A] transition-colors duration-500 overflow-hidden rounded-sm">
-        
-        {/* Image Pane */}
+
         <div className="relative h-48 lg:h-[260px] overflow-hidden">
           <motion.img
             src={project.bannerUrl}
@@ -51,8 +49,7 @@ export default memo(function ProjectCard({ project, index }) {
               scale: isHovered ? 1.05 : 1,
             }}
           />
-          
-          {/* Grid overlay */}
+
           <div
             className="absolute inset-0 pointer-events-none opacity-10"
             style={{
@@ -62,7 +59,6 @@ export default memo(function ProjectCard({ project, index }) {
             }}
           />
 
-          {/* Index badge */}
           <div className="absolute top-6 left-6 flex items-center gap-3">
             <div className="w-2 h-2 rounded-full" style={{ background: accent, boxShadow: `0 0 12px ${accent}` }} />
             <span className="font-mono text-[10px] text-white/40 tracking-[0.4em] uppercase">
@@ -70,20 +66,17 @@ export default memo(function ProjectCard({ project, index }) {
             </span>
           </div>
 
-          {/* Title overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent">
             <h3 className="text-xl lg:text-3xl font-bold tracking-tight leading-none text-white italic">
               {project.title.toUpperCase()}
             </h3>
           </div>
 
-
         </div>
 
-        {/* Info Pane */}
         <div className="p-5 flex flex-col justify-between bg-white/[0.02]">
           <div className="space-y-4">
-            {/* Category & Status */}
+
             <div className="flex justify-between items-center pb-4 border-b border-white/10">
               <div>
                 <span className="font-mono text-[9px] text-white/40 tracking-[0.3em] uppercase block mb-1">Sector</span>
@@ -99,12 +92,10 @@ export default memo(function ProjectCard({ project, index }) {
               </div>
             </div>
 
-            {/* Description */}
             <p className="text-[13px] text-white/60 font-light leading-relaxed line-clamp-3">
               {project.description}
             </p>
 
-            {/* Tech tags */}
             <div className="flex flex-wrap gap-2">
               {project.technologies?.split(",").map((t) => (
                 <span
@@ -117,7 +108,6 @@ export default memo(function ProjectCard({ project, index }) {
             </div>
           </div>
 
-          {/* Bottom actions */}
           <div className="pt-6 mt-auto flex items-center justify-between">
             <div className="flex items-center gap-3 group/view">
               <div className="w-10 h-10 border border-white/10 flex items-center justify-center group-hover:border-[#D9FF00] group-hover:shadow-[0_0_15px_rgba(217,255,0,0.3)] transition-all">

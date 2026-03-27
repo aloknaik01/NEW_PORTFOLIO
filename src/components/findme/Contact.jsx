@@ -65,7 +65,7 @@ const Contact = memo(() => {
 
       const response = await sendToBackend({
         senderName: name,
-        email: email, // Note: Backend model might need email, but let's check messageController
+        email: email, 
         subject: subject || "No Subject",
         message: message
       });
@@ -74,7 +74,7 @@ const Contact = memo(() => {
         setFormStatus("success");
         addLog("Payload delivered to Backend Central.");
         toast.success("Transmission Confirmed.");
-        
+
         setName("");
         setEmail("");
         setSubject("");

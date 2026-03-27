@@ -21,14 +21,13 @@ export const Footer = memo(() => {
     }
   }, [location.pathname, navigate]);
 
-  // Build social links dynamically from backend user data
   const socialLinks = useMemo(() => {
     return [
       { icon: <Github size={18} />,   label: 'GitHub',   url: user?.githubURL },
       { icon: <Linkedin size={18} />, label: 'LinkedIn', url: user?.linkedinURL },
       { icon: <Twitter size={18} />,  label: 'Twitter',  url: user?.twitterURL },
       { icon: <Globe size={18} />,    label: 'Portfolio', url: user?.portfolioURL },
-    ].filter((s) => s.url); // only render links that exist
+    ].filter((s) => s.url); 
   }, [user?.githubURL, user?.linkedinURL, user?.twitterURL, user?.portfolioURL]);
 
   const handleBrandClick = useCallback(() => {
@@ -38,14 +37,13 @@ export const Footer = memo(() => {
 
   return (
     <footer className="bg-black border-t border-white/5 pt-8 lg:pt-12 pb-8 px-6 relative overflow-hidden">
-      {/* Subtle background glow */}
+
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-neon-lime/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Main Grid — Hidden on Mobile and Tablet, Visible on Laptop/Desktop */}
+
         <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand Identity */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div
               className="flex items-center gap-2 text-xl font-black tracking-tighter cursor-pointer"
@@ -62,7 +60,6 @@ export const Footer = memo(() => {
             </p>
           </div>
 
-          {/* Directories */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.3em] mb-5">Directories</h4>
             <ul className="space-y-3">
@@ -80,7 +77,6 @@ export const Footer = memo(() => {
             </ul>
           </div>
 
-          {/* Social Uplinks */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-[0.3em] mb-5">Social_Uplinks</h4>
             <div className="flex flex-wrap gap-3">
@@ -105,7 +101,6 @@ export const Footer = memo(() => {
             </div>
           </div>
 
-          {/* Terminal Status */}
           <div className="glass p-4 rounded-2xl border border-white/5 flex flex-col justify-center gap-2">
             <div className="flex items-center gap-2 mb-1">
               <Activity className="text-neon-lime flex-shrink-0" size={14} />
@@ -137,7 +132,6 @@ export const Footer = memo(() => {
 
         </div>
 
-        {/* Bottom Bar */}
         <div className="lg:pt-6 lg:border-t lg:border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
           <div className="flex items-center gap-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest">
             <ShieldCheck size={12} className="text-neon-lime flex-shrink-0" />

@@ -9,26 +9,23 @@ import {
 } from "../api/portfolioApi";
 import { setPortfolioData } from "../store/slices/portfolioSlice";
 
-// Stable fetcher references — defined outside hook so they never change between renders
 const safeGetPublicUser = () => getPublicUser().catch(() => null);
 const safeGetAllProjects = () => getAllProjects().catch(() => []);
 const safeGetAllSkills = () => getAllSkills().catch(() => []);
 const safeGetAllApplications = () => getAllApplications().catch(() => []);
 
-// Shared React Query options — data stays "fresh" for 1 hour so navigating
-// between pages NEVER triggers a new network request.
 const QUERY_OPTIONS = {
-  staleTime: 1000 * 60 * 60,       // 1 hour — data is treated as fresh
-  gcTime: 1000 * 60 * 60 * 2,      // 2 hours — keep in React Query in-memory cache
+  staleTime: 1000 * 60 * 60,       
+  gcTime: 1000 * 60 * 60 * 2,      
   retry: 1,
-  refetchOnWindowFocus: false,      // Don't re-fetch when tab regains focus
-  refetchOnReconnect: false,        // Don't re-fetch on network reconnect
-  refetchOnMount: false,            // Don't re-fetch when component re-mounts
+  refetchOnWindowFocus: false,      
+  refetchOnReconnect: false,        
+  refetchOnMount: false,            
 };
 
 export const usePortfolioData = () => {
   const dispatch = useDispatch();
-  // Guard ref: syncs to Redux only once when all data arrives
+
   const hasSynced = useRef(false);
 
   const userQuery = useQuery({ queryKey: ["user"], queryFn: safeGetPublicUser, ...QUERY_OPTIONS });

@@ -7,24 +7,17 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-
 const SP = { stiffness: 62, damping: 22, mass: 1 };
-
 export default memo(function About() {
   const { user } = useSelector((state) => state.portfolio);
   const sectionRef = useRef(null);
-
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-
   const sp = (v) => useSpring(v, SP);
-
   const bgY = sp(useTransform(scrollYProgress, [0, 1], ["15%", "-15%"]));
   const bgOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-
-
   const titleY = sp(
     useTransform(scrollYProgress, [0.04, 0.3, 0.7, 0.92], [60, 0, -20, -40])
   );
@@ -34,7 +27,6 @@ export default memo(function About() {
     [0, 1, 1, 0]
   );
   const titleBlur = useTransform(scrollYProgress, [0.04, 0.24], [10, 0]);
-
   const cardX = sp(
     useTransform(scrollYProgress, [0.1, 0.42, 0.7, 0.92], [-100, 0, 0, -20])
   );
@@ -52,14 +44,11 @@ export default memo(function About() {
       "0 40px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04)",
     ]
   );
-
-
   const p1O = useTransform(scrollYProgress, [0.22, 0.42], [0, 1]);
   const p1B = useTransform(scrollYProgress, [0.22, 0.42], [10, 0]);
   const p2O = useTransform(scrollYProgress, [0.29, 0.49], [0, 1]);
   const p2B = useTransform(scrollYProgress, [0.29, 0.49], [10, 0]);
   const p3O = useTransform(scrollYProgress, [0.36, 0.54], [0, 1]);
-
   const imgX = sp(
     useTransform(scrollYProgress, [0.14, 0.45, 0.72, 0.94], [80, 0, 0, 20])
   );
@@ -74,32 +63,23 @@ export default memo(function About() {
     [0.14, 0.42, 0.72, 0.94],
     [0, 1, 1, 0]
   );
-
   const i1Y = sp(useTransform(scrollYProgress, [0.34, 0.56], [50, 0]));
   const i1O = useTransform(scrollYProgress, [0.3, 0.5, 0.85, 0.96], [0, 1, 1, 0]);
   const i2Y = sp(useTransform(scrollYProgress, [0.41, 0.62], [50, 0]));
   const i2O = useTransform(scrollYProgress, [0.35, 0.55, 0.85, 0.96], [0, 1, 1, 0]);
-
-  /* ── Accent line grows as title reveals ── */
   const lineW = useTransform(scrollYProgress, [0.04, 0.26], [0, 32]);
-
   return (
-
-
     <section
       ref={sectionRef}
       id="about"
       className="relative min-h-[82vh] mt-10"
       style={{ scrollMarginTop: "80px" }}
     >
-
-
       <motion.div
         className="absolute inset-0 pointer-events-none select-none"
         style={{ opacity: bgOpacity }}
         aria-hidden="true"
       >
-
         <motion.div
           className="absolute -left-[6%] top-[8%] w-[560px] h-[560px] rounded-full"
           style={{
@@ -108,11 +88,9 @@ export default memo(function About() {
               "radial-gradient(circle, rgba(217,255,0,0.065) 0%, rgba(217,255,0,0.018) 48%, transparent 70%)",
           }}
         />
-
         <motion.div
           className="absolute -right-[4%] top-[32%] w-[380px] h-[380px] rounded-full"
           style={{
-
             y: useSpring(
               useTransform(scrollYProgress, [0, 1], ["10%", "-20%"]),
               { stiffness: 34, damping: 18, mass: 1.3 }
@@ -131,15 +109,11 @@ export default memo(function About() {
         />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
       </motion.div>
-
-
       <div
         className="sticky top-0 h-[82vh] flex flex-col justify-center"
         style={{ perspective: "1200px", perspectiveOrigin: "50% 50%" }}
       >
         <div className="max-w-4xl mx-auto w-full px-6 md:px-10 lg:px-14">
-
-
           <motion.div
             className="mb-4"
             style={{
@@ -159,7 +133,6 @@ export default memo(function About() {
                 Core Identity
               </span>
             </div>
-
             <h3 className="text-[2.8rem] md:text-[4.2rem] lg:text-[5.2rem] font-black italic tracking-tighter leading-[0.88] text-white">
               THE{" "}
               <span
@@ -171,13 +144,8 @@ export default memo(function About() {
               <span className="text-[#D9FF00]">.</span>
             </h3>
           </motion.div>
-
           <div className="grid lg:grid-cols-[1fr_280px] gap-4 items-start">
-
-
             <div className="space-y-3">
-
-
               <motion.div
                 className="relative overflow-hidden rounded-2xl"
                 style={{
@@ -192,10 +160,7 @@ export default memo(function About() {
                   willChange: "transform, opacity, filter",
                 }}
               >
-                {/* Neon left accent bar */}
                 <div className="absolute top-0 left-0 w-[2.5px] h-full bg-gradient-to-b from-[#D9FF00] via-[#D9FF00]/45 to-transparent" />
-
-                {/* Chrome top bar */}
                 <div
                   className="flex items-center justify-between px-7 py-3"
                   style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
@@ -224,13 +189,10 @@ export default memo(function About() {
                     ))}
                   </div>
                 </div>
-
                 <div className="px-6 py-6 space-y-4">
                   <h4 className="text-[0.9rem] font-black uppercase tracking-[0.15em] text-white/88 italic">
                     Mission Parameters
                   </h4>
-
-                  {/* PLANE Z3 · Para 1 — staggered blur reveal */}
                   <motion.p
                     className="text-[0.875rem] text-white/46 font-light leading-[1.8]"
                     style={{
@@ -240,8 +202,6 @@ export default memo(function About() {
                   >
                     {user?.aboutMe || "I don't just write code — I engineer solutions that bridge complex backend logic with precise, intuitive interfaces."}
                   </motion.p>
-
-                  {/* PLANE Z3 · Para 2 */}
                   <motion.p
                     className="text-[0.875rem] text-white/46 font-light leading-[1.8]"
                     style={{
@@ -260,8 +220,6 @@ export default memo(function About() {
                     . High-availability architectures that stay
                     performant under real load.
                   </motion.p>
-
-                  {/* PLANE Z3 · Signature */}
                   <motion.div
                     className="pt-1 flex items-end justify-between"
                     style={{ opacity: p3O }}
@@ -275,8 +233,6 @@ export default memo(function About() {
                     </div>
                   </motion.div>
                 </div>
-
-                {/* Corner circuit mark */}
                 <div className="absolute bottom-3 right-3 opacity-[0.07]">
                   <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
                     <path d="M0 40 L0 0 L40 0" stroke="#D9FF00" strokeWidth="2" />
@@ -284,8 +240,6 @@ export default memo(function About() {
                   </svg>
                 </div>
               </motion.div>
-
-
               <div className="grid grid-cols-2 gap-3">
                 <motion.div
                   className="group relative p-5 rounded-xl overflow-hidden cursor-default"
@@ -311,7 +265,6 @@ export default memo(function About() {
                     Aska,Odisha, IN
                   </div>
                 </motion.div>
-
                 <motion.div
                   className="group relative p-5 rounded-xl overflow-hidden cursor-default"
                   style={{
@@ -338,8 +291,6 @@ export default memo(function About() {
                 </motion.div>
               </div>
             </div>
-
-
             <motion.div
               className="relative group"
               style={{
@@ -352,23 +303,16 @@ export default memo(function About() {
                 willChange: "transform, opacity",
               }}
             >
-              {/* Measurement frame */}
               <div
                 className="absolute -inset-[14px] rounded-[1.8rem] pointer-events-none"
                 style={{ border: "1px solid rgba(217,255,0,0.08)" }}
               />
-
-              {/* Engineering corner brackets */}
               <div className="absolute -top-[18px] -left-[18px] w-8 h-8 border-t border-l border-[#D9FF00]/52" />
               <div className="absolute -bottom-[18px] -right-[18px] w-8 h-8 border-b border-r border-[#D9FF00]/52" />
-
-              {/* Hover glow */}
               <div
                 className="absolute -inset-8 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                 style={{ background: "rgba(217,255,0,0.04)" }}
               />
-
-              {/* VIDEO CARD */}
               <div
                 className="relative aspect-[4/5] rounded-[1.6rem] overflow-hidden"
                 style={{
@@ -408,8 +352,6 @@ export default memo(function About() {
                     }
                   />
                 )}
-
-                {/* Scanline sweep */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                   <motion.div
                     className="absolute left-0 w-full h-[1.5px]"
@@ -426,8 +368,6 @@ export default memo(function About() {
                     }}
                   />
                 </div>
-
-                {/* Bottom gradient */}
                 <div
                   className="absolute inset-x-0 bottom-0 h-[40%] pointer-events-none"
                   style={{
@@ -435,8 +375,6 @@ export default memo(function About() {
                       "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 55%, transparent 100%)",
                   }}
                 />
-
-                {/* Identity badge */}
                 <div className="absolute top-3 left-3">
                   <div
                     className="flex items-center gap-[7px] px-[10px] py-[5px] rounded-md"
@@ -460,8 +398,6 @@ export default memo(function About() {
                     </span>
                   </div>
                 </div>
-
-                {/* Fingerprint reveal */}
                 <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-500">
                   <div
                     className="p-[6px] rounded-md"
@@ -475,8 +411,6 @@ export default memo(function About() {
                   </div>
                 </div>
               </div>
-
-              {/* Meta strip */}
               <div className="mt-4 flex items-center justify-between px-1">
                 <span className="text-[8px] font-mono text-white/18 uppercase tracking-[0.38em]">
                   Subject_ID: AN-001
@@ -501,8 +435,6 @@ export default memo(function About() {
           </div>
         </div>
       </div>
-
-      {/* Bottom structural rule */}
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
     </section>
   );

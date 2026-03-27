@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Add a sitemap URL here once it is generated
+# Sitemap: https://devalok.vercel.app/sitemap.xml

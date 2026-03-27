@@ -7,6 +7,14 @@ const roles = ["React Maestro", "Java Enthusiast", "FullStack Alchemist"];
 export default memo(function BlurEntryHero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,22 +48,27 @@ export default memo(function BlurEntryHero() {
             className="relative flex items-center justify-center"
             style={{ 
               fontFamily: "'Caveat', cursive", 
-              fontSize: "3rem", 
+              fontSize: isMobile ? "2rem" : "3rem", 
               color: "#fff",
-              position: "relative" // Reinforce with inline style too
+              position: "relative" 
             }}
           >
             {letters.map((letter, index) => (
               <motion.span
                 key={index}
-                initial={{ opacity: 0, filter: "blur(10px)" }}
+                initial={{ opacity: 0, filter: isMobile ? "blur(4px)" : "blur(10px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(10px)" }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                exit={{ opacity: 0, filter: isMobile ? "blur(4px)" : "blur(10px)" }}
+                transition={{ duration: 0.5, delay: isMobile ? index * 0.04 : index * 0.08 }}
                 style={{
                   display: "inline-block",
                   marginRight: letter === " " ? "0.6rem" : "0",
-                  position: "relative" // Ensure spans are also relative
+                  position: "relative",
+                  willChange: "filter, opacity",
+                  WebkitBackfaceVisibility: "hidden",
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
+                  WebkitTransform: "translateZ(0)"
                 }}
               >
                 {letter === " " ? "\u00A0" : letter}

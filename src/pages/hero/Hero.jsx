@@ -9,12 +9,9 @@ import ApplicationsSection from "../../components/ProjectsNexus/ApplicationsSect
 import "./Hero.css";
 import { useEffect, memo } from "react";
 import { useScroll } from "../../context/Scrollcontext";
-
 export default memo(function Hero() {
   const { user } = useSelector((state) => state.portfolio);
-
   useEffect(() => {
-    // Check if there's a pending scroll from navigation
     const scrollToSection = localStorage.getItem('scrollToSection');
     if (scrollToSection) {
       setTimeout(() => {
@@ -26,14 +23,11 @@ export default memo(function Hero() {
       }, 100);
     }
   }, []);
-
   return (
     <section className="hero-container">
       <div className="hero-content">
         <div className="hero-inner">
-          {/* ── Hero Section with ID ── */}
           <div id="home" style={{ scrollMarginTop: '80px' }} className="hero-home-section">
-
             <div className="hero-video-bg" style={{ background: user?.heroVideoUrl ? 'transparent' : 'black' }} aria-hidden="true">
               {user?.heroVideoUrl ? (
                 <video
@@ -45,29 +39,22 @@ export default memo(function Hero() {
                   playsInline
                 />
               ) : null}
-              {/* Dark overlay so text stays legible */}
               <div className="hero-video-overlay" />
-              {/* Scanline effect for that cyberpunk look */}
               <div className="hero-video-scanlines" />
-              {/* Radial vignette — darkens edges */}
               <div className="hero-video-vignette" />
             </div>
-            {/* ══════════════════════════════════════ */}
-
             <div className="badges">
               <span className="badge">Eat</span>
               <span className="badge badge-primary">Code</span>
               <span className="badge badge-secondary">Sleep</span>
             </div>
-
             <TerminalLine />
-
-            <div className="calligraphy-headline">
+            <h1 className="calligraphy-headline">
               I'm - <span className="tube-text">{user?.fullName || "Alok Naik"}</span>
               <BlurEntryHero />
-            </div>
-
-            {/* Scroll Indicator */}
+            </h1>
+            {/* Screen Reader Only SEO Anchors */}
+            <span className="sr-only">Dev Alok devalok dev-alok</span>
             <div className="mt-40 flex flex-col items-center justify-center space-y-4 opacity-40 hover:opacity-100 transition-opacity">
               <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">
                 Scroll to explore
@@ -83,25 +70,18 @@ export default memo(function Hero() {
         }
       `}</style>
           </div>
-
-          {/* All sections below the hero with proper IDs and scroll margin */}
           <div id="about" style={{ scrollMarginTop: '80px' }}>
             <About />
           </div>
-
           <div id="skills" style={{ scrollMarginTop: '80px' }}>
             <SkillsMatrix />
           </div>
-
           <div id="applications" style={{ scrollMarginTop: '80px' }}>
             <ApplicationsSection />
           </div>
-
           <div id="workshop" style={{ scrollMarginTop: '80px' }}>
             <ProjectsSection />
           </div>
-
-
           <div id="contact" style={{ scrollMarginTop: '80px' }}>
             <Contact />
           </div>
