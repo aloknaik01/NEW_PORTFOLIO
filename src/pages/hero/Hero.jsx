@@ -54,7 +54,9 @@ export default memo(function Hero() {
               <BlurEntryHero />
             </h1>
             {/* Screen Reader Only SEO Anchors */}
-            <span className="sr-only">Dev Alok devalok dev-alok</span>
+            <span style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>
+              Dev Alok devalok dev-alok
+            </span>
             <div className="mt-40 flex flex-col items-center justify-center space-y-4 opacity-40 hover:opacity-100 transition-opacity">
               <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">
                 Scroll to explore
